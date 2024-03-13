@@ -292,6 +292,72 @@ public class TransposeMatrixSolution {
     }
 }
 
+public class TreeNode
+{
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
+
+    public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+}
+
+public class ConstructStringFromBinaryTreeSolution {
+    public string Tree2str(TreeNode root) {
+        // if (root == null) {
+        //     return "";
+        // }
+
+        // string result = root.val.ToString();
+
+        // if (root.left != null || root.right != null) {
+        //     result += "(" + Tree2str(root.left) + ")";
+        // }
+
+        // if (root.right != null) {
+        //     result += "(" + Tree2str(root.right) + ")";
+        // }
+
+        // return result;
+
+        if (root == null)
+            {
+                return "";
+            }
+        
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            Tree2strHelper(root, sb);
+        
+            return sb.ToString();
+    }
+
+    private void Tree2strHelper(TreeNode node, System.Text.StringBuilder sb) {
+        if (node == null)
+            {
+                return;
+            }
+        
+            sb.Append(node.val);
+        
+            if (node.left != null || node.right != null)
+            {
+                sb.Append("(");
+                Tree2strHelper(node.left, sb);
+                sb.Append(")");
+            }
+        
+            if (node.right != null)
+            {
+                sb.Append("(");
+                Tree2strHelper(node.right, sb);
+                sb.Append(")");
+            }
+    }
+}
+
 public class Program {
     public static void Main() {
         ListNode head = new ListNode(1);
@@ -380,10 +446,21 @@ public class Program {
         System.Console.WriteLine();
         int[][] matrix = { new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { 7, 8, 9 } };
         int[][] result = sol11.Transpose(matrix);
-        for (int i = 0; i < result.GetLength(0); i++){
+        /*for (int i = 0; i < result.GetLength(0); i++){
             for (int j = 0; j < result.GetLength(1); j++){
                 System.Console.Write(result[i][j] + " ");
             }
-        }
+        }*/
+
+        ConstructStringFromBinaryTreeSolution sol12 = new ConstructStringFromBinaryTreeSolution();
+        System.Console.WriteLine();
+
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        System.Console.WriteLine(sol12.Tree2str(root));
+
+        System.Console.WriteLine(sol12.Tree2str(root));
     }
 }
