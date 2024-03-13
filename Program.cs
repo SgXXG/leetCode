@@ -358,15 +358,36 @@ public class ConstructStringFromBinaryTreeSolution {
     }
 }
 
+public class CalculateMoneyInLeetCodeBankSolution {
+    public int CalculateMoney(int n) {
+        int sum = 0;
+        int prev = 1;
+        
+        if (n == 1) {
+            return 1;
+        }
+
+        for (int i = 1; i <= n; i++) {
+            sum += prev + (i - 1) % 7;
+            if (i % 7 == 0) {
+                prev++;
+            }
+        }
+        return sum;
+    }
+}
+
 public class Program {
     public static void Main() {
+        LinkedListSolution sol0 = new LinkedListSolution();
+
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);
         head.next.next = new ListNode(3);
         head.next.next.next = new ListNode(-3);
         head.next.next.next.next = new ListNode(1);
-        LinkedListSolution sol = new LinkedListSolution();
-        ListNode res = sol.RemoveZeroSumSublists(head);
+        
+        ListNode res = sol0.RemoveZeroSumSublists(head);
         while (res != null){
             Console.Write(res.val + " ");
             res = res.next;
@@ -443,7 +464,7 @@ public class Program {
         System.Console.WriteLine(sol10.FindSpecialInteger(new int[] { 1,2,2,6,6,6,6,7,10 }));
 
         TransposeMatrixSolution sol11 = new TransposeMatrixSolution();
-        System.Console.WriteLine();
+        //System.Console.WriteLine();
         int[][] matrix = { new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { 7, 8, 9 } };
         int[][] result = sol11.Transpose(matrix);
         /*for (int i = 0; i < result.GetLength(0); i++){
@@ -459,8 +480,12 @@ public class Program {
         root.left = new TreeNode(2);
         root.right = new TreeNode(3);
         root.left.left = new TreeNode(4);
-        System.Console.WriteLine(sol12.Tree2str(root));
 
         System.Console.WriteLine(sol12.Tree2str(root));
+
+        CalculateMoneyInLeetCodeBankSolution sol13 = new CalculateMoneyInLeetCodeBankSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol13.CalculateMoney(4));
+        System.Console.WriteLine(sol13.CalculateMoney(10));
     }
 }
