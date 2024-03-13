@@ -193,7 +193,46 @@ public class ImageSmootherSolution {
 
 public class ValidAnagramSolution {
     public bool IsAnagram(string s, string t) {
+        // Dictionary<char, int> dict = new Dictionary<char, int>();
+
+        // if (s.Length != t.Length){
+        //     return false;
+        // }
+
+        // foreach (char c in s){
+        //     if (dict.ContainsKey(c)){
+        //         dict[c]++;
+        //     } else {
+        //         dict.Add(c, 1);
+        //     }
+        // }
+
+        // return dict.Keys.All(c => t.Count(x => x == c) == dict[c]);
+
+        Dictionary<char, int> dictS = new Dictionary<char, int>();
+        Dictionary<char, int> dictT = new Dictionary<char, int>();
         
+        if (s.Length != t.Length){
+            return false;
+        }
+        
+        foreach (char c in s){
+            if (dictS.ContainsKey(c)){
+                dictS[c]++;
+            } else {
+                dictS.Add(c, 1);
+            }
+        }
+        
+        foreach (char c in t){
+            if (dictT.ContainsKey(c)){
+                dictT[c]++;
+            } else {
+                dictT.Add(c, 1);
+            }
+        }
+        
+        return dictS.Count == dictT.Count && dictS.Keys.All(c => dictT.ContainsKey(c) && dictT[c] == dictS[c]);
     }
 }
 
@@ -260,13 +299,21 @@ public class Program {
             foreach (int num in row){
                 Console.Write(num + " ");
             }
+        }
+        System.Console.WriteLine();
+        int[][] image1 = { new int[] { 100, 200, 100 }, new int[] { 200, 50, 200 }, new int[] { 100, 200, 100 } };
+        int[][] updatedImage1 = sol8.ImageSmoother(image1);
+        foreach (int[] row in updatedImage1){
+            foreach (int num in row){
+                Console.Write(num + " ");
             }
-            int[][] image1 = { new int[] { 100, 200, 100 }, new int[] { 200, 50, 200 }, new int[] { 100, 200, 100 } };
-            int[][] updatedImage1 = sol8.ImageSmoother(image1);
-            foreach (int[] row in updatedImage1){
-                foreach (int num in row){
-                    Console.Write(num + " ");
-                }
-            }
+        }
+
+        ValidAnagramSolution sol9 = new ValidAnagramSolution();
+        System.Console.WriteLine(); 
+        System.Console.WriteLine(sol9.IsAnagram("anagram", "nagaram"));
+        System.Console.WriteLine(sol9.IsAnagram("rat", "car"));
+        System.Console.WriteLine(sol9.IsAnagram("a", "ab"));
     }
+
 }
