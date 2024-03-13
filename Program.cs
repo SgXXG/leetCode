@@ -28,7 +28,7 @@ public class LinkedListSolution {
     }
 }
 
-public class SquaresOfASortedArray {
+public class SquaresOfASortedArraySolution {
     public int[] SortedSqaures(int[] nums){
 
         for (int i = 0; i < nums.Length; i++){
@@ -55,15 +55,145 @@ public class SquaresOfASortedArray {
     }
 }
 
-public class PowerOfTwo {
+public class PowerOfTwoSolution {
     public bool IsPowerOfTwo(int n) {
         return n > 0 && (n & (n - 1)) == 0;
     }
 }
 
-public class PoweOfThree {
+public class PoweOfThreeSolution {
     public bool IsPowerOfThree(int n) {
         return n > 0 && Math.Pow(3, 19) % n == 0;
+    }
+}
+
+public class ClimbingStairsSolution {
+    public int ClimbStairs(int n) {
+        // if (n == 1) {
+        //     return 1;
+        // }
+
+        // if (n == 2) {
+        //     return 2;
+        // }
+
+        // int[] dp = new int[n + 1];
+        // dp[1] = 1;
+        // dp[2] = 2;
+        // for (int i = 3; i <= n; i++) {
+        //     dp[i] = dp[i - 1] + dp[i - 2];
+        // }
+
+        // return dp[n];
+
+        if (n <= 1)
+        {
+            return n;
+        }
+
+        int a = 0;
+        int b = 1;
+        int temp = 0;
+
+        for (int i = 1; i <= n; i++)
+        {
+            temp = a + b;
+            a = b;
+            b = temp;
+        }
+
+        return b;
+    }
+}
+
+public class DecodeWaysSolution {
+    public int NumDecodings(string s) {
+        if (s[0] == '0') {
+            return 0;
+        }
+        int n = s.Length;
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = s[0] == '0' ? 0 : 1;
+        for (int i = 2; i <= n; i++) {
+            int oneDigit = int.Parse(s.Substring(i-1, 1));
+            int twoDigits = int.Parse(s.Substring(i-2, 2));
+            if (oneDigit >= 1) {
+                dp[i] += dp[i-1];
+            }
+            if (twoDigits >= 10 && twoDigits <= 26) {
+                dp[i] += dp[i-2];
+            }
+        }
+        return dp[n];
+    }
+}
+
+public class PathCrossingSolution {
+    public bool IsPathCrossing(string path) {
+        var visited = new HashSet<string>();
+        int x = 0, y = 0;
+        visited.Add($"{x},{y}");
+
+        foreach (char direction in path){
+            switch (direction) {
+                case 'N': y++; break;
+                case 'S': y--; break;
+                case 'E': x++; break;
+                case 'W': x--; break;
+            }
+
+            string currentPoint = $"{x},{y}";
+            if(visited.Contains(currentPoint)){
+                return true;
+            }
+
+            visited.Add(currentPoint);
+        }
+
+        return false;
+    }
+}
+
+public class BuyTwoChocolatesSolution {
+    public int BuyChoco (int[] prices, int money){
+        Array.Sort(prices);
+        if (prices[0] + prices[1] > money){
+            return money;
+        }
+
+        return money - prices[0] - prices[1];
+    }
+}
+
+public class ImageSmootherSolution {
+    public int[][] ImageSmoother(int[][] img) {
+        int m = img.Length;
+        int n = img[0].Length;
+
+        int[][] res = new int[m][];
+        for (int i = 0; i < m; i++){
+            res[i] = new int[n];
+            for (int j = 0; j < n; j++){
+                int count = 0;
+                for (int x = i - 1; x <= i + 1; x++){
+                    for (int y = j - 1; y <= j + 1; y++){
+                        if (x >= 0 && x < m && y >= 0 && y < n){
+                            res[i][j] += img[x][y];
+                            count++;
+                        }
+                    }
+                }
+                res[i][j] = res[i][j] / count;
+            }
+        }
+        return res;
+    }
+}
+
+public class ValidAnagramSolution {
+    public bool IsAnagram(string s, string t) {
+        
     }
 }
 
@@ -81,23 +211,62 @@ public class Program {
             res = res.next;
         }
 
-       SquaresOfASortedArray sol1 = new SquaresOfASortedArray();
-       int[] numbers = { -4, -1, 0, 3, 10 };
-       numbers = sol1.SortedSqaures(numbers); 
-       System.Console.WriteLine();
+        SquaresOfASortedArraySolution sol1 = new SquaresOfASortedArraySolution();
+        int[] numbers = { -4, -1, 0, 3, 10 };
+        numbers = sol1.SortedSqaures(numbers); 
+        System.Console.WriteLine();
+        foreach (int num in numbers){
+            Console.Write(num + " ");
+        }
 
-       foreach (int num in numbers){
-           Console.Write(num + " ");
-       }
+        PowerOfTwoSolution sol2 = new PowerOfTwoSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol2.IsPowerOfTwo(16));
+        System.Console.WriteLine(sol2.IsPowerOfTwo(-16));
 
-       PowerOfTwo sol2 = new PowerOfTwo();
-       System.Console.WriteLine();
-       System.Console.WriteLine(sol2.IsPowerOfTwo(16));
-       System.Console.WriteLine(sol2.IsPowerOfTwo(-16));
+        PoweOfThreeSolution sol3 = new PoweOfThreeSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol3.IsPowerOfThree(27));
+        System.Console.WriteLine(sol3.IsPowerOfThree(243));
 
-       PoweOfThree sol3 = new PoweOfThree();
-       System.Console.WriteLine();
-       System.Console.WriteLine(sol3.IsPowerOfThree(27));
-       System.Console.WriteLine(sol3.IsPowerOfThree(243));
+        ClimbingStairsSolution sol4 = new ClimbingStairsSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol4.ClimbStairs(3));
+        System.Console.WriteLine(sol4.ClimbStairs(45));
+
+        DecodeWaysSolution sol5 = new DecodeWaysSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol5.NumDecodings("226"));
+        System.Console.WriteLine(sol5.NumDecodings("006"));
+        System.Console.WriteLine(sol5.NumDecodings("12"));
+
+        PathCrossingSolution sol6 = new PathCrossingSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol6.IsPathCrossing("N"));
+        System.Console.WriteLine(sol6.IsPathCrossing("nESWWW"));
+        System.Console.WriteLine(sol6.IsPathCrossing("NES"));
+
+        BuyTwoChocolatesSolution sol7 = new BuyTwoChocolatesSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol7.BuyChoco(new int[] { 1, 2, 2, 1, 0 }, 4));
+        System.Console.WriteLine(sol7.BuyChoco(new int[] { 1, 2, 2 }, 3));
+        System.Console.WriteLine(sol7.BuyChoco(new int[] { 3, 2, 3 }, 3));
+
+        ImageSmootherSolution sol8 = new ImageSmootherSolution();
+        System.Console.WriteLine();
+        int[][] image = { new int[] { 1, 1, 1 }, new int[] { 1, 0, 1 }, new int[] { 1, 1, 1 } };
+        int[][] updatedImage = sol8.ImageSmoother(image);
+        foreach (int[] row in updatedImage){
+            foreach (int num in row){
+                Console.Write(num + " ");
+            }
+            }
+            int[][] image1 = { new int[] { 100, 200, 100 }, new int[] { 200, 50, 200 }, new int[] { 100, 200, 100 } };
+            int[][] updatedImage1 = sol8.ImageSmoother(image1);
+            foreach (int[] row in updatedImage1){
+                foreach (int num in row){
+                    Console.Write(num + " ");
+                }
+            }
     }
 }
