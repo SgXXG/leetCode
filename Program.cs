@@ -377,7 +377,7 @@ public class CalculateMoneyInLeetCodeBankSolution {
     }
 }
 
-partial class NumberOf1BitsSolution {
+public class NumberOf1BitsSolution {
     public int HammingWeight(uint n) {
         // int count = 0;
         // foreach (char c in n.ToString()){
@@ -395,6 +395,26 @@ partial class NumberOf1BitsSolution {
         }
 
         return count;
+    }
+}
+
+public class FindThePivotIntegerSolution {
+    public int PivotInteger(int n) {
+        int totalSum = n * (n + 1) / 2;
+        int leftSum = 0;
+    
+        for (int i = 1; i <= n; i++)
+        {
+            leftSum += i;
+            int rightSum = totalSum - leftSum + i;
+    
+            if (leftSum == rightSum)
+            {
+                return i;
+            }
+        }
+    
+        return -1;
     }
 }
 
@@ -512,5 +532,10 @@ public class Program {
         NumberOf1BitsSolution sol14 = new NumberOf1BitsSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol14.HammingWeight(00000000000000000000000000001011));
+
+        FindThePivotIntegerSolution sol15 = new FindThePivotIntegerSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol15.PivotInteger(1));
+        System.Console.WriteLine(sol15.PivotInteger(8));
     }
 }
