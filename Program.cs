@@ -236,6 +236,62 @@ public class ValidAnagramSolution {
     }
 }
 
+public class ElementAppearingMoreThen25PerCentSolution {
+    public int FindSpecialInteger(int[] arr) {
+        // int n = arr.Length / 4;
+        // Dictionary<int, int> dict = new Dictionary<int, int>();
+
+        // foreach (int num in arr){
+        //     if (!dict.ContainsKey(num)){
+        //         dict[num] = 1;
+        //     } else {
+        //         dict[num]++;
+        //     }
+
+        //     if (dict[num] > n) {
+        //         return num;
+        //     }
+        // }
+
+        // return -1;
+
+        int n = arr.Length / 4;
+        
+            for (int i = 0; i < arr.Length - n; i++) {
+                if (arr[i] == arr[i + n]) {
+                    return arr[i];
+                }
+            }
+        
+            return -1;
+    }
+}
+
+public class TransposeMatrixSolution {
+    public int[][] Transpose(int[][] matrix) {
+        int rows = matrix.Length;
+        int cols = matrix[0].Length;
+
+        int[][] transposedMatrix = new int[cols][];
+        for (int i = 0; i < cols; i++)
+        {
+            transposedMatrix[i] = new int[rows];
+        }
+
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                transposedMatrix[j][i] = matrix[i][j];
+            }
+        }
+
+        matrix = null;
+
+        return transposedMatrix;
+    }
+}
+
 public class Program {
     public static void Main() {
         ListNode head = new ListNode(1);
@@ -314,6 +370,20 @@ public class Program {
         System.Console.WriteLine(sol9.IsAnagram("anagram", "nagaram"));
         System.Console.WriteLine(sol9.IsAnagram("rat", "car"));
         System.Console.WriteLine(sol9.IsAnagram("a", "ab"));
-    }
 
+        ElementAppearingMoreThen25PerCentSolution sol10 = new ElementAppearingMoreThen25PerCentSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol10.FindSpecialInteger(new int[] { 1, 1, 1, 2, 2, 3 }));
+        System.Console.WriteLine(sol10.FindSpecialInteger(new int[] { 1,2,2,6,6,6,6,7,10 }));
+
+        TransposeMatrixSolution sol11 = new TransposeMatrixSolution();
+        System.Console.WriteLine();
+        int[][] matrix = { new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 }, new int[] { 7, 8, 9 } };
+        int[][] result = sol11.Transpose(matrix);
+        for (int i = 0; i < result.GetLength(0); i++){
+            for (int j = 0; j < result.GetLength(1); j++){
+                System.Console.Write(result[i][j] + " ");
+            }
+        }
+    }
 }
