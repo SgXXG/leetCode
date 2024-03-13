@@ -377,6 +377,27 @@ public class CalculateMoneyInLeetCodeBankSolution {
     }
 }
 
+partial class NumberOf1BitsSolution {
+    public int HammingWeight(uint n) {
+        // int count = 0;
+        // foreach (char c in n.ToString()){
+        //     if (c == '1'){
+        //         count++;
+        //     }
+        // }
+
+        // return count;
+
+        int count = 0;
+        while (n > 0){
+            count += (int)(n & 1);
+            n >>= 1;
+        }
+
+        return count;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
@@ -487,5 +508,9 @@ public class Program {
         System.Console.WriteLine();
         System.Console.WriteLine(sol13.CalculateMoney(4));
         System.Console.WriteLine(sol13.CalculateMoney(10));
+
+        NumberOf1BitsSolution sol14 = new NumberOf1BitsSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol14.HammingWeight(00000000000000000000000000001011));
     }
 }
