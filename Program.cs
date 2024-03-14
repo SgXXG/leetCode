@@ -522,6 +522,12 @@ public class FindThePivotIntegerSolution {
     }
 }
 
+public class PowerOfFourSolution {
+    public bool IsPowerOfFour(int n) {
+        return n > 0 && (n & (n - 1)) == 0 && (n & 0xAAAAAAAA) == 0;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
@@ -641,5 +647,10 @@ public class Program {
         System.Console.WriteLine();
         System.Console.WriteLine(sol15.PivotInteger(1));
         System.Console.WriteLine(sol15.PivotInteger(8));
+
+        PowerOfFourSolution sol16 = new PowerOfFourSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol16.IsPowerOfFour(16));
+        System.Console.WriteLine(sol16.IsPowerOfFour(1));
     }
 }
