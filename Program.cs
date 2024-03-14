@@ -528,6 +528,12 @@ public class PowerOfFourSolution {
     }
 }
 
+public class CheckIsTwoStringArraysAreEquivalent {
+    public bool ArrayStringsAreEqual(string[] word1, string[] word2) {
+        return string.Join("", word1) == string.Join("", word2);
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
@@ -652,5 +658,9 @@ public class Program {
         System.Console.WriteLine();
         System.Console.WriteLine(sol16.IsPowerOfFour(16));
         System.Console.WriteLine(sol16.IsPowerOfFour(1));
+
+        CheckIsTwoStringArraysAreEquivalent sol17 = new CheckIsTwoStringArraysAreEquivalent();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol17.ArrayStringsAreEqual(new string[] { "abc", "d", "defg" }, new string[] { "abcddefg" }));
     }
 }
