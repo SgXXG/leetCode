@@ -522,13 +522,30 @@ public class FindThePivotIntegerSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for determining if a number is a power of four.
+/// </summary>
 public class PowerOfFourSolution {
+    /// <summary>
+    /// Determines whether the given number is a power of four.
+    /// </summary>
+    /// <param name="n">The number to check.</param>
+    /// <returns>True if the number is a power of four, otherwise false.</returns>
     public bool IsPowerOfFour(int n) {
         return n > 0 && (n & (n - 1)) == 0 && (n & 0xAAAAAAAA) == 0;
     }
 }
 
+/// <summary>
+/// Class to check if two string arrays are equivalent.
+/// </summary>
 public class CheckIsTwoStringArraysAreEquivalent {
+    /// <summary>
+    /// Checks if two string arrays are equivalent by joining the strings in each array and comparing them.
+    /// </summary>
+    /// <param name="word1">The first string array.</param>
+    /// <param name="word2">The second string array.</param>
+    /// <returns>True if the string arrays are equivalent, false otherwise.</returns>
     public bool ArrayStringsAreEqual(string[] word1, string[] word2) {
         return string.Join("", word1) == string.Join("", word2);
     }
