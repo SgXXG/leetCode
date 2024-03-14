@@ -1,13 +1,30 @@
-﻿public class ListNode {
+﻿/// <summary>
+/// Represents a node in a linked list.
+/// </summary>
+public class ListNode {
     public int val;
     public ListNode next;
-    public ListNode(int val=0, ListNode next =null) {
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ListNode"/> class.
+    /// </summary>
+    /// <param name="val">The value of the node.</param>
+    /// <param name="next">The next node in the linked list.</param>
+    public ListNode(int val = 0, ListNode next = null) {
         this.val = val;
         this.next = next;
     }
- }
+}
 
+/// <summary>
+/// Represents a solution for removing zero-sum sublists from a linked list.
+/// </summary>
 public class LinkedListSolution {
+    /// <summary>
+    /// Removes zero-sum sublists from the given linked list.
+    /// </summary>
+    /// <param name="head">The head node of the linked list.</param>
+    /// <returns>The head node of the modified linked list.</returns>
     public ListNode RemoveZeroSumSublists(ListNode head){
         ListNode dummy = new ListNode(0);
         dummy.next = head;
@@ -28,7 +45,15 @@ public class LinkedListSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for sorting the squares of an array in ascending order.
+/// </summary>
 public class SquaresOfASortedArraySolution {
+    /// <summary>
+    /// Sorts the squares of the given array in ascending order.
+    /// </summary>
+    /// <param name="nums">The array of integers.</param>
+    /// <returns>The sorted array of squared integers.</returns>
     public int[] SortedSqaures(int[] nums){
 
         for (int i = 0; i < nums.Length; i++){
@@ -55,19 +80,43 @@ public class SquaresOfASortedArraySolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for determining if a given number is a power of two.
+/// </summary>
 public class PowerOfTwoSolution {
+    /// <summary>
+    /// Determines whether the given number is a power of two.
+    /// </summary>
+    /// <param name="n">The number to check.</param>
+    /// <returns>True if the number is a power of two, otherwise false.</returns>
     public bool IsPowerOfTwo(int n) {
         return n > 0 && (n & (n - 1)) == 0;
     }
 }
 
+/// <summary>
+/// Represents a solution for determining if a number is a power of three.
+/// </summary>
 public class PoweOfThreeSolution {
+    /// <summary>
+    /// Determines whether the given number is a power of three.
+    /// </summary>
+    /// <param name="n">The number to check.</param>
+    /// <returns>True if the number is a power of three; otherwise, false.</returns>
     public bool IsPowerOfThree(int n) {
         return n > 0 && Math.Pow(3, 19) % n == 0;
     }
 }
 
+/// <summary>
+/// Represents a solution for the climbing stairs problem.
+/// </summary>
 public class ClimbingStairsSolution {
+    /// <summary>
+    /// Calculates the number of distinct ways to climb to the top of the stairs.
+    /// </summary>
+    /// <param name="n">The number of stairs.</param>
+    /// <returns>The number of distinct ways to climb to the top of the stairs.</returns>
     public int ClimbStairs(int n) {
         // if (n == 1) {
         //     return 1;
@@ -106,6 +155,9 @@ public class ClimbingStairsSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for decoding ways problem.
+/// </summary>
 public class DecodeWaysSolution {
     public int NumDecodings(string s) {
         if (s[0] == '0') {
@@ -129,7 +181,15 @@ public class DecodeWaysSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for determining if a path crosses itself.
+/// </summary>
 public class PathCrossingSolution {
+    /// <summary>
+    /// Determines if the given path crosses itself.
+    /// </summary>
+    /// <param name="path">The path to check.</param>
+    /// <returns>True if the path crosses itself, false otherwise.</returns>
     public bool IsPathCrossing(string path) {
         var visited = new HashSet<string>();
         int x = 0, y = 0;
@@ -155,10 +215,19 @@ public class PathCrossingSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for buying two chocolates.
+/// </summary>
 public class BuyTwoChocolatesSolution {
-    public int BuyChoco (int[] prices, int money){
+    /// <summary>
+    /// Calculates the amount of money left after buying two chocolates.
+    /// </summary>
+    /// <param name="prices">An array of chocolate prices.</param>
+    /// <param name="money">The amount of money available.</param>
+    /// <returns>The amount of money left after buying two chocolates.</returns>
+    public int BuyChoco(int[] prices, int money) {
         Array.Sort(prices);
-        if (prices[0] + prices[1] > money){
+        if (prices[0] + prices[1] > money) {
             return money;
         }
 
@@ -166,7 +235,15 @@ public class BuyTwoChocolatesSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for smoothing an image.
+/// </summary>
 public class ImageSmootherSolution {
+    /// <summary>
+    /// Smooths the given image by averaging the pixel values of each cell with its neighboring cells.
+    /// </summary>
+    /// <param name="img">The image represented as a 2D array of integers.</param>
+    /// <returns>A new 2D array representing the smoothed image.</returns>
     public int[][] ImageSmoother(int[][] img) {
         int m = img.Length;
         int n = img[0].Length;
@@ -191,24 +268,17 @@ public class ImageSmootherSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for determining if two strings are anagrams of each other.
+/// </summary>
 public class ValidAnagramSolution {
+    /// <summary>
+    /// Determines if two strings are anagrams of each other.
+    /// </summary>
+    /// <param name="s">The first string.</param>
+    /// <param name="t">The second string.</param>
+    /// <returns>True if the strings are anagrams, false otherwise.</returns>
     public bool IsAnagram(string s, string t) {
-        // Dictionary<char, int> dict = new Dictionary<char, int>();
-
-        // if (s.Length != t.Length){
-        //     return false;
-        // }
-
-        // foreach (char c in s){
-        //     if (dict.ContainsKey(c)){
-        //         dict[c]++;
-        //     } else {
-        //         dict.Add(c, 1);
-        //     }
-        // }
-
-        // return dict.Keys.All(c => t.Count(x => x == c) == dict[c]);
-
         Dictionary<char, int> dictS = new Dictionary<char, int>();
         Dictionary<char, int> dictT = new Dictionary<char, int>();
         
@@ -236,38 +306,37 @@ public class ValidAnagramSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding the element appearing more than 25% of the time in an array.
+/// </summary>
 public class ElementAppearingMoreThen25PerCentSolution {
+    /// <summary>
+    /// Finds the element appearing more than 25% of the time in the given array.
+    /// </summary>
+    /// <param name="arr">The array of integers.</param>
+    /// <returns>The element appearing more than 25% of the time, or -1 if no such element exists.</returns>
     public int FindSpecialInteger(int[] arr) {
-        // int n = arr.Length / 4;
-        // Dictionary<int, int> dict = new Dictionary<int, int>();
-
-        // foreach (int num in arr){
-        //     if (!dict.ContainsKey(num)){
-        //         dict[num] = 1;
-        //     } else {
-        //         dict[num]++;
-        //     }
-
-        //     if (dict[num] > n) {
-        //         return num;
-        //     }
-        // }
-
-        // return -1;
-
         int n = arr.Length / 4;
         
-            for (int i = 0; i < arr.Length - n; i++) {
-                if (arr[i] == arr[i + n]) {
-                    return arr[i];
-                }
+        for (int i = 0; i < arr.Length - n; i++) {
+            if (arr[i] == arr[i + n]) {
+                return arr[i];
             }
+        }
         
-            return -1;
+        return -1;
     }
 }
 
+/// <summary>
+/// Represents a solution for transposing a matrix.
+/// </summary>
 public class TransposeMatrixSolution {
+    /// <summary>
+    /// Transposes the given matrix.
+    /// </summary>
+    /// <param name="matrix">The matrix to be transposed.</param>
+    /// <returns>The transposed matrix.</returns>
     public int[][] Transpose(int[][] matrix) {
         int rows = matrix.Length;
         int cols = matrix[0].Length;
@@ -292,6 +361,9 @@ public class TransposeMatrixSolution {
     }
 }
 
+/// <summary>
+/// Represents a node in a binary tree.
+/// </summary>
 public class TreeNode
 {
     public int val;
@@ -305,7 +377,15 @@ public class TreeNode
     }
 }
 
+/// <summary>
+/// Represents a solution for constructing a string from a binary tree.
+/// </summary>
 public class ConstructStringFromBinaryTreeSolution {
+    /// <summary>
+    /// Converts a binary tree to a string representation.
+    /// </summary>
+    /// <param name="root">The root node of the binary tree.</param>
+    /// <returns>A string representation of the binary tree.</returns>
     public string Tree2str(TreeNode root) {
         // if (root == null) {
         //     return "";
@@ -334,6 +414,11 @@ public class ConstructStringFromBinaryTreeSolution {
             return sb.ToString();
     }
 
+    /// <summary>
+    /// Helper method to convert a binary tree to a string representation.
+    /// </summary>
+    /// <param name="node">The current node being processed.</param>
+    /// <param name="sb">The StringBuilder used to build the string representation.</param>
     private void Tree2strHelper(TreeNode node, System.Text.StringBuilder sb) {
         if (node == null)
             {
@@ -358,7 +443,15 @@ public class ConstructStringFromBinaryTreeSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for calculating the amount of money in the LeetCode bank.
+/// </summary>
 public class CalculateMoneyInLeetCodeBankSolution {
+    /// <summary>
+    /// Calculates the amount of money in the LeetCode bank after n days.
+    /// </summary>
+    /// <param name="n">The number of days.</param>
+    /// <returns>The amount of money in the LeetCode bank.</returns>
     public int CalculateMoney(int n) {
         int sum = 0;
         int prev = 1;
@@ -377,6 +470,9 @@ public class CalculateMoneyInLeetCodeBankSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for counting the number of 1 bits in an unsigned integer.
+/// </summary>
 public class NumberOf1BitsSolution {
     public int HammingWeight(uint n) {
         // int count = 0;
@@ -398,7 +494,15 @@ public class NumberOf1BitsSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding the pivot integer in a sequence of integers.
+/// </summary>
 public class FindThePivotIntegerSolution {
+    /// <summary>
+    /// Finds the pivot integer in a sequence of integers.
+    /// </summary>
+    /// <param name="n">The number of integers in the sequence.</param>
+    /// <returns>The pivot integer, or -1 if no pivot integer is found.</returns>
     public int PivotInteger(int n) {
         int totalSum = n * (n + 1) / 2;
         int leftSum = 0;
