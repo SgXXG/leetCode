@@ -551,7 +551,15 @@ public class CheckIsTwoStringArraysAreEquivalent {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding the largest odd number in a string.
+/// </summary>
 public class LargestOddNumberInStringSolution {
+    /// <summary>
+    /// Finds the largest odd number in the given string.
+    /// </summary>
+    /// <param name="num">The input string.</param>
+    /// <returns>The largest odd number found in the string.</returns>
     public string LargestOddNumber(string num) {
         for (int i = num.Length - 1; i >= 0; i--) {
             if ((num[i] - '0') % 2 == 1) {
@@ -562,10 +570,28 @@ public class LargestOddNumberInStringSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding the minimum number of changes required to make a string alternating.
+/// </summary>
+public class MinimumChangesToMakeAlternatingStringSolution {
+    /// <summary>
+    /// Calculates the minimum number of operations required to make the given string alternating.
+    /// </summary>
+    /// <param name="s">The input string.</param>
+    /// <returns>The minimum number of operations.</returns>
+    public int MinOperations(string s) {
+        int[] count = new int[2];
+        for (int i = 0; i < s.Length; i++) {
+            count[i % 2 ^ s[i] - '0']++;
+        }
+        return Math.Min(count[0], count[1]);
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
-
+        
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);
         head.next.next = new ListNode(3);
@@ -694,5 +720,9 @@ public class Program {
         LargestOddNumberInStringSolution sol18 = new LargestOddNumberInStringSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol18.LargestOddNumber("52"));
+
+        MinimumChangesToMakeAlternatingStringSolution sol19 = new MinimumChangesToMakeAlternatingStringSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol19.MinOperations("0100"));
     }
 }
