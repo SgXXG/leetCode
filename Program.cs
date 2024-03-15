@@ -715,6 +715,31 @@ public class IntersectionOfTwoArraysSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding the minimum common value between two arrays.
+/// </summary>
+public class MinimumCommonValueSolution {
+    /// <summary>
+    /// Finds the minimum common value between two arrays.
+    /// </summary>
+    /// <param name="nums1">The first array.</param>
+    /// <param name="nums2">The second array.</param>
+    /// <returns>The minimum common value, or -1 if there is no common value.</returns>
+    public int GetCommon (int[] nums1, int[] nums2) {
+        int i = 0, j = 0;
+        while (i < nums1.Length && j < nums2.Length) {
+            if (nums1[i] < nums2[j]) {
+                i++;
+            } else if (nums1[i] > nums2[j]) {
+                j++;
+            } else {
+                return nums1[i];
+            }
+        }
+        return -1;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
@@ -856,5 +881,10 @@ public class Program {
         foreach (int num in resultArr){
             System.Console.Write(num + " ");
         }
+        System.Console.WriteLine();
+
+        MinimumCommonValueSolution sol24 = new MinimumCommonValueSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol24.GetCommon(new int[] { 1, 2, 3, 4 }, new int[] { 3, 4, 5, 6 }));
     }
 }
