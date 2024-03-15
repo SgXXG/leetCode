@@ -644,7 +644,7 @@ public class BackspaceStringCompareSolution {
 /// <summary>
 /// Determines if the two halves of a string are alike based on the number of vowels.
 /// </summary>
-public class DetermineIfStringHalvesAreAlike {
+public class DetermineIfStringHalvesAreAlikeSolution {
     /// <summary>
     /// Checks if the two halves of the given string are alike in terms of the number of vowels.
     /// </summary>
@@ -671,7 +671,7 @@ public class DetermineIfStringHalvesAreAlike {
 /// <summary>
 /// Class that calculates the product of an array except for the current element.
 /// </summary>
-public class ProductOfArrayExceptSelf {
+public class ProductOfArrayExceptSelfSolution {
     /// <summary>
     /// Calculates the product of an array except for the current element.
     /// </summary>
@@ -694,6 +694,24 @@ public class ProductOfArrayExceptSelf {
         }
 
         return result;
+    }
+}
+
+/// <summary>
+/// Represents a solution for finding the intersection of two arrays.
+/// </summary>
+public class IntersectionOfTwoArraysSolution {
+    /// <summary>
+    /// Finds the intersection of two arrays.
+    /// </summary>
+    /// <param name="nums1">The first array.</param>
+    /// <param name="nums2">The second array.</param>
+    /// <returns>An array containing the intersection of the two input arrays.</returns>
+    public int[] Intersection(int[] nums1, int[] nums2) {
+        HashSet<int> set1 = new HashSet<int>(nums1);
+        HashSet<int> set2 = new HashSet<int>(nums2);
+        set1.IntersectWith(set2);
+        return set1.ToArray();
     }
 }
 
@@ -815,15 +833,27 @@ public class Program {
         System.Console.WriteLine();
         System.Console.WriteLine(sol20.BackspaceCompare("ab#c", "ad#c"));
 
-        DetermineIfStringHalvesAreAlike sol21 = new DetermineIfStringHalvesAreAlike();
+        DetermineIfStringHalvesAreAlikeSolution sol21 = new DetermineIfStringHalvesAreAlikeSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol21.HalvesAreAlike("book"));
 
-        ProductOfArrayExceptSelf sol22 = new ProductOfArrayExceptSelf();
+        ProductOfArrayExceptSelfSolution sol22 = new ProductOfArrayExceptSelfSolution();
         System.Console.WriteLine();
         int[] nums = { 1, 2, 3, 4 };
         int[] resultArray = sol22.ProductExceptSelf(nums);
         foreach (int num in resultArray){
+            System.Console.Write(num + " ");
+        }
+        System.Console.WriteLine();
+
+        IntersectionOfTwoArraysSolution sol23 = new IntersectionOfTwoArraysSolution();
+        System.Console.WriteLine();
+
+        int[] nums1 = { 1, 2, 2, 1 };
+        int[] nums2 = { 2, 2 };
+        
+        int[] resultArr = sol23.Intersection(nums1, nums2);
+        foreach (int num in resultArr){
             System.Console.Write(num + " ");
         }
     }
