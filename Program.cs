@@ -588,6 +588,59 @@ public class MinimumChangesToMakeAlternatingStringSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for comparing two strings with backspace characters.
+/// </summary>
+public class BackspaceStringCompareSolution {
+    /// <summary>
+    /// Compares two strings with backspace characters and returns whether they are equal.
+    /// </summary>
+    /// <param name="s">The first string to compare.</param>
+    /// <param name="t">The second string to compare.</param>
+    /// <returns>True if the strings are equal, false otherwise.</returns>
+    public bool BackspaceCompare(string s, string t) {
+        int i = s.Length - 1, j = t.Length - 1;
+        int skipS = 0, skipT = 0;
+    
+        while (i >= 0 || j >= 0) {
+            i = GetNextValidCharIndex(s, i, ref skipS);
+            j = GetNextValidCharIndex(t, j, ref skipT);
+    
+            if (i >= 0 && j >= 0 && s[i] != t[j]) {
+                return false;
+            }
+            if ((i >= 0) != (j >= 0)) {
+                return false;
+            }
+            i--;
+            j--;
+        }
+        return true;
+    }
+
+    /// <summary>
+    /// Gets the index of the next valid character in the string, considering the skip count.
+    /// </summary>
+    /// <param name="str">The input string.</param>
+    /// <param name="index">The current index.</param>
+    /// <param name="skipCount">The number of characters to skip.</param>
+    /// <returns>The index of the next valid character.</returns>
+    private int GetNextValidCharIndex(string str, int index, ref int skipCount) {
+        while (index >= 0) {
+            if (str[index] == '#') {
+                skipCount++;
+                index--;
+            } else if (skipCount > 0) {
+                skipCount--;
+                index--;
+            } else {
+                break;
+            }
+        }
+        return index;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
@@ -724,5 +777,9 @@ public class Program {
         MinimumChangesToMakeAlternatingStringSolution sol19 = new MinimumChangesToMakeAlternatingStringSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol19.MinOperations("0100"));
+
+        BackspaceStringCompareSolution sol20 = new BackspaceStringCompareSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol20.BackspaceCompare("ab#c", "ad#c"));
     }
 }
