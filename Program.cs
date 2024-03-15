@@ -668,6 +668,35 @@ public class DetermineIfStringHalvesAreAlike {
     }
 }
 
+/// <summary>
+/// Class that calculates the product of an array except for the current element.
+/// </summary>
+public class ProductOfArrayExceptSelf {
+    /// <summary>
+    /// Calculates the product of an array except for the current element.
+    /// </summary>
+    /// <param name="nums">The input array.</param>
+    /// <returns>An array where each element is the product of all elements in the input array except for the current element.</returns>
+    public int[] ProductExceptSelf(int[] nums) {
+        int n = nums.Length;
+        int[] result = new int[n];
+
+        int leftProduct = 1;
+        for (int i = 0; i < n; i++) {
+            result[i] = leftProduct;
+            leftProduct *= nums[i];
+        }
+
+        int rightProduct = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            result[i] *= rightProduct;
+            rightProduct *= nums[i];
+        }
+
+        return result;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
@@ -695,35 +724,26 @@ public class Program {
         PowerOfTwoSolution sol2 = new PowerOfTwoSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol2.IsPowerOfTwo(16));
-        System.Console.WriteLine(sol2.IsPowerOfTwo(-16));
 
         PoweOfThreeSolution sol3 = new PoweOfThreeSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol3.IsPowerOfThree(27));
-        System.Console.WriteLine(sol3.IsPowerOfThree(243));
 
         ClimbingStairsSolution sol4 = new ClimbingStairsSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol4.ClimbStairs(3));
-        System.Console.WriteLine(sol4.ClimbStairs(45));
 
         DecodeWaysSolution sol5 = new DecodeWaysSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol5.NumDecodings("226"));
-        System.Console.WriteLine(sol5.NumDecodings("006"));
-        System.Console.WriteLine(sol5.NumDecodings("12"));
 
         PathCrossingSolution sol6 = new PathCrossingSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol6.IsPathCrossing("N"));
-        System.Console.WriteLine(sol6.IsPathCrossing("nESWWW"));
-        System.Console.WriteLine(sol6.IsPathCrossing("NES"));
 
         BuyTwoChocolatesSolution sol7 = new BuyTwoChocolatesSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol7.BuyChoco(new int[] { 1, 2, 2, 1, 0 }, 4));
-        System.Console.WriteLine(sol7.BuyChoco(new int[] { 1, 2, 2 }, 3));
-        System.Console.WriteLine(sol7.BuyChoco(new int[] { 3, 2, 3 }, 3));
 
         ImageSmootherSolution sol8 = new ImageSmootherSolution();
         System.Console.WriteLine();
@@ -734,25 +754,14 @@ public class Program {
                 Console.Write(num + " ");
             }
         }
-        System.Console.WriteLine();
-        int[][] image1 = { new int[] { 100, 200, 100 }, new int[] { 200, 50, 200 }, new int[] { 100, 200, 100 } };
-        int[][] updatedImage1 = sol8.ImageSmoother(image1);
-        foreach (int[] row in updatedImage1){
-            foreach (int num in row){
-                Console.Write(num + " ");
-            }
-        }
 
         ValidAnagramSolution sol9 = new ValidAnagramSolution();
         System.Console.WriteLine(); 
         System.Console.WriteLine(sol9.IsAnagram("anagram", "nagaram"));
-        System.Console.WriteLine(sol9.IsAnagram("rat", "car"));
-        System.Console.WriteLine(sol9.IsAnagram("a", "ab"));
 
         ElementAppearingMoreThen25PerCentSolution sol10 = new ElementAppearingMoreThen25PerCentSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol10.FindSpecialInteger(new int[] { 1, 1, 1, 2, 2, 3 }));
-        System.Console.WriteLine(sol10.FindSpecialInteger(new int[] { 1,2,2,6,6,6,6,7,10 }));
 
         TransposeMatrixSolution sol11 = new TransposeMatrixSolution();
         //System.Console.WriteLine();
@@ -777,7 +786,6 @@ public class Program {
         CalculateMoneyInLeetCodeBankSolution sol13 = new CalculateMoneyInLeetCodeBankSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol13.CalculateMoney(4));
-        System.Console.WriteLine(sol13.CalculateMoney(10));
 
         NumberOf1BitsSolution sol14 = new NumberOf1BitsSolution();
         System.Console.WriteLine();
@@ -786,12 +794,10 @@ public class Program {
         FindThePivotIntegerSolution sol15 = new FindThePivotIntegerSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol15.PivotInteger(1));
-        System.Console.WriteLine(sol15.PivotInteger(8));
 
         PowerOfFourSolution sol16 = new PowerOfFourSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol16.IsPowerOfFour(16));
-        System.Console.WriteLine(sol16.IsPowerOfFour(1));
 
         CheckIsTwoStringArraysAreEquivalent sol17 = new CheckIsTwoStringArraysAreEquivalent();
         System.Console.WriteLine();
@@ -812,5 +818,13 @@ public class Program {
         DetermineIfStringHalvesAreAlike sol21 = new DetermineIfStringHalvesAreAlike();
         System.Console.WriteLine();
         System.Console.WriteLine(sol21.HalvesAreAlike("book"));
+
+        ProductOfArrayExceptSelf sol22 = new ProductOfArrayExceptSelf();
+        System.Console.WriteLine();
+        int[] nums = { 1, 2, 3, 4 };
+        int[] resultArray = sol22.ProductExceptSelf(nums);
+        foreach (int num in resultArray){
+            System.Console.Write(num + " ");
+        }
     }
 }
