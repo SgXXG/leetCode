@@ -551,6 +551,17 @@ public class CheckIsTwoStringArraysAreEquivalent {
     }
 }
 
+public class LargestOddNumberInStringSolution {
+    public string LargestOddNumber(string num) {
+        for (int i = num.Length - 1; i >= 0; i--) {
+            if ((num[i] - '0') % 2 == 1) {
+                return num.Substring(0, i + 1);
+            }
+        }
+        return "";
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
@@ -679,5 +690,9 @@ public class Program {
         CheckIsTwoStringArraysAreEquivalent sol17 = new CheckIsTwoStringArraysAreEquivalent();
         System.Console.WriteLine();
         System.Console.WriteLine(sol17.ArrayStringsAreEqual(new string[] { "abc", "d", "defg" }, new string[] { "abcddefg" }));
+
+        LargestOddNumberInStringSolution sol18 = new LargestOddNumberInStringSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol18.LargestOddNumber("52"));
     }
 }
