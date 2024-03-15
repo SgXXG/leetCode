@@ -641,6 +641,33 @@ public class BackspaceStringCompareSolution {
     }
 }
 
+/// <summary>
+/// Determines if the two halves of a string are alike based on the number of vowels.
+/// </summary>
+public class DetermineIfStringHalvesAreAlike {
+    /// <summary>
+    /// Checks if the two halves of the given string are alike in terms of the number of vowels.
+    /// </summary>
+    /// <param name="s">The input string.</param>
+    /// <returns>True if the two halves are alike, false otherwise.</returns>
+    public bool HalvesAreAlike(string s) {
+        HashSet<char> vowels = new HashSet<char> { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
+        int halfLength = s.Length / 2;
+        int countVowels = 0;
+        for (int i = 0; i < halfLength; i++) {
+            if (vowels.Contains(s[i])) {
+                countVowels++;
+            }
+        }
+        for (int i = halfLength; i < s.Length; i++) {
+            if (vowels.Contains(s[i])) {
+                countVowels--;
+            }
+        }
+        return countVowels == 0;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
@@ -781,5 +808,9 @@ public class Program {
         BackspaceStringCompareSolution sol20 = new BackspaceStringCompareSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol20.BackspaceCompare("ab#c", "ad#c"));
+
+        DetermineIfStringHalvesAreAlike sol21 = new DetermineIfStringHalvesAreAlike();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol21.HalvesAreAlike("book"));
     }
 }
