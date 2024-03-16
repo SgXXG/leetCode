@@ -740,6 +740,28 @@ public class MinimumCommonValueSolution {
     }
 }
 
+public class ContiguousArraySolution {
+    public int FindMaxLength (int[] nums) {
+        Dictionary<int, int> map = new Dictionary<int, int>(){
+            {0, -1}
+        };
+        int count = 0;
+        int maxLength = 0;
+        
+        for (int i = 0; i < nums.Length; i++) {
+            count = count + (nums[i] == 1 ? 1 : -1);
+
+            if (map.ContainsKey(count)) {
+                maxLength = Math.Max(maxLength, i - map[count]);
+            } else {
+                map.Add(count, i);
+            }
+        }
+
+        return maxLength;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
@@ -886,5 +908,9 @@ public class Program {
         MinimumCommonValueSolution sol24 = new MinimumCommonValueSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol24.GetCommon(new int[] { 1, 2, 3, 4 }, new int[] { 3, 4, 5, 6 }));
+
+        ContiguousArraySolution sol25 = new ContiguousArraySolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol25.FindMaxLength(new int[] { 0, 1 }));
     }
 }
