@@ -740,7 +740,15 @@ public class MinimumCommonValueSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding the maximum length of a contiguous subarray with equal number of 0s and 1s.
+/// </summary>
 public class ContiguousArraySolution {
+    /// <summary>
+    /// Finds the maximum length of a contiguous subarray with equal number of 0s and 1s.
+    /// </summary>
+    /// <param name="nums">The input array of integers.</param>
+    /// <returns>The maximum length of a contiguous subarray with equal number of 0s and 1s.</returns>
     public int FindMaxLength (int[] nums) {
         Dictionary<int, int> map = new Dictionary<int, int>(){
             {0, -1}
