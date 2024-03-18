@@ -857,6 +857,42 @@ public class SortIntegersByTheNumberOf1BitsSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding words that can be formed by characters.
+/// </summary>
+public class FindWordsThatCanBeFormedByCharactersSolution {
+    /// <summary>
+    /// Counts the total length of words that can be formed using the given characters.
+    /// </summary>
+    /// <param name="words">An array of words to check.</param>
+    /// <param name="chars">A string of characters to form the words.</param>
+    /// <returns>The total length of words that can be formed.</returns>
+    public int CountCharacters (string[] words, string chars) {
+        int[] charCount = new int[26];
+        foreach (char c in chars) {
+            charCount[c - 'a']++;
+        }
+
+        int totalLength = 0;
+        int[] wordCount = new int[26];
+        foreach (string word in words) {
+            Array.Clear(wordCount, 0, 26);
+            bool canForm = true;
+            foreach (char c in word) {
+                wordCount[c - 'a']++;
+                if (wordCount[c - 'a'] > charCount[c - 'a']) {
+                    canForm = false;
+                    break;
+                }
+            }
+            if (canForm) {
+                totalLength += word.Length;
+            }
+        }
+        return totalLength;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
@@ -1009,7 +1045,7 @@ public class Program {
         System.Console.WriteLine(sol25.FindMaxLength(new int[] { 0, 1 }));
 
         FindModeInBinarySearchTreeSolution sol26 = new FindModeInBinarySearchTreeSolution();
-        System.Console.WriteLine();
+        /*System.Console.WriteLine();
 
         TreeNode root = new TreeNode(1);
         root.right = new TreeNode(2);
@@ -1018,6 +1054,21 @@ public class Program {
         int[] resultArray1 = sol26.FindMode(root);
         foreach (int num in resultArray1){
             System.Console.Write(num + " ");
+        }*/
+
+        SortIntegersByTheNumberOf1BitsSolution sol27 = new SortIntegersByTheNumberOf1BitsSolution();
+        System.Console.WriteLine();
+        
+        int[] arr = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+        
+        int[] resultArray2 = sol27.SortByBits(arr);
+        foreach (int num in resultArray2){
+            System.Console.Write(num + " ");
         }
+        System.Console.WriteLine();
+
+        FindWordsThatCanBeFormedByCharactersSolution sol28 = new FindWordsThatCanBeFormedByCharactersSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol28.CountCharacters(new string[] { "cat", "bt", "hat", "tree" }, "atach"));
     }
 }
