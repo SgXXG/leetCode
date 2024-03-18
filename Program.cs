@@ -770,6 +770,64 @@ public class ContiguousArraySolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding the mode(s) in a binary search tree.
+/// </summary>
+public class FindModeInBinarySearchTreeSolution {
+    private int currVal;
+    private int currCount = 0;
+    private int maxCount = 0;
+    private int modeCount = 0;
+
+    private int[] modes;
+
+    /// <summary>
+    /// Finds the mode(s) in the given binary search tree.
+    /// </summary>
+    /// <param name="root">The root node of the binary search tree.</param>
+    /// <returns>An array containing the mode(s) in the binary search tree.</returns>
+    public int[] FindMode(TreeNode root) {
+        Inorder(root);
+        modes = new int[modeCount];
+        currCount = 0;
+        modeCount = 0;
+        Inorder(root);
+        return modes;
+    }
+
+    /// <summary>
+    /// Handles the given value and updates the current value, count, and mode count.
+    /// </summary>
+    /// <param name="val">The value to be handled.</param>
+    private void HandleValue(int val) {
+        if (val != currVal) {
+            currVal = val;
+            currCount = 0;
+        }
+        currCount++;
+        if (currCount > maxCount) {
+            maxCount = currCount;
+            modeCount = 1;
+        } else if (currCount == maxCount) {
+            if (modes != null) {
+                modes[modeCount] = currVal;
+            }
+            modeCount++;
+        }
+    }
+
+    /// <summary>
+    /// Performs an inorder traversal of a binary tree rooted at the specified node.
+    /// </summary>
+    /// <param name="node">The root node of the binary tree.</param>
+    private void Inorder(TreeNode node) {
+        if (node == null) return;
+        Inorder(node.left);
+        HandleValue(node.val);
+        Inorder(node.right);
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
@@ -920,5 +978,17 @@ public class Program {
         ContiguousArraySolution sol25 = new ContiguousArraySolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol25.FindMaxLength(new int[] { 0, 1 }));
+
+        FindModeInBinarySearchTreeSolution sol26 = new FindModeInBinarySearchTreeSolution();
+        System.Console.WriteLine();
+
+        TreeNode root = new TreeNode(1);
+        root.right = new TreeNode(2);
+        root.right.left = new TreeNode(2);
+
+        int[] resultArray1 = sol26.FindMode(root);
+        foreach (int num in resultArray1){
+            System.Console.Write(num + " ");
+        }
     }
 }
