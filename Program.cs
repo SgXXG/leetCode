@@ -828,6 +828,35 @@ public class FindModeInBinarySearchTreeSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for sorting integers by the number of 1 bits.
+/// </summary>
+public class SortIntegersByTheNumberOf1BitsSolution {
+    /// <summary>
+    /// Sorts the given array of integers by the number of 1 bits in each integer.
+    /// </summary>
+    /// <param name="arr">The array of integers to be sorted.</param>
+    /// <returns>The sorted array of integers.</returns>
+    public int[] SortByBits (int[] arr) {
+        Array.Sort (arr, (a, b) => BitCount (a) == BitCount (b) ? a - b : BitCount (a) - BitCount (b));
+        return arr;
+    }
+
+    /// <summary>
+    /// Calculates the number of 1 bits in the given integer.
+    /// </summary>
+    /// <param name="n">The integer for which to calculate the number of 1 bits.</param>
+    /// <returns>The number of 1 bits in the given integer.</returns>
+    private int BitCount (int n) {
+        int count = 0;
+        while (n != 0) {
+            n &= (n - 1);
+            count++;
+        }
+        return count;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
