@@ -893,6 +893,36 @@ public class FindWordsThatCanBeFormedByCharactersSolution {
     }
 }
 
+public class CoinSolution {
+    public class Coin { 
+        public double Probability { get; set; }
+    }
+
+    public class Solution {
+        private Random random = new Random();
+
+        public Coin FindWonderfullCoin(Coin[] coins, int K) {
+            double[] estimates = new double[coins.Length];
+
+            for (int i = 0; i < coins.Length; i++) {
+                int tails = 0;
+                for (int j = 0; j < K; j++) {
+                    if (FlipCoin(coins[i]))
+                        tails++;
+                }
+                estimates[i] = Math.Abs(tails / (double) K - 0.5);
+            }
+
+            Array.Sort(estimates, coins);
+            return coins.Length >= 4 ? coins[3] : null;
+        }
+
+        private bool FlipCoin(Coin coin) {
+            return random.NextDouble() < coin.Probability;
+        }
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
