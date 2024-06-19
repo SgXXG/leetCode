@@ -955,6 +955,32 @@ public class SetMismatchSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding the index of the first unique character in a string.
+/// </summary>
+public class FirstUniqueCharacterInAStringSolution {
+    /// <summary>
+    /// Finds the index of the first unique character in the given string.
+    /// </summary>
+    /// <param name="s">The input string.</param>
+    /// <returns>The index of the first unique character, or -1 if no unique character is found.</returns>
+    /// </summary>
+    public int FirstUniqueChar(string s) {
+        int[] frequency = new int[26];
+
+        for (int i = 0; i < s.Length; i++) {
+            frequency[s[i] - 'a']++;
+        }
+
+        for (int i = 0; i < s.Length; i++) {
+            if (frequency[s[i] - 'a'] == 1) {
+                return i;
+            }   
+        } 
+        return -1;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
@@ -1141,5 +1167,11 @@ public class Program {
         foreach (int el in resultArray3){
             System.Console.Write(el + " ");
         }
+        System.Console.WriteLine();
+
+        FirstUniqueCharacterInAStringSolution sol30 = new FirstUniqueCharacterInAStringSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol30.FirstUniqueChar("loveleetcode"));
+
     }
 }
