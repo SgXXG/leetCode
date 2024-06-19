@@ -923,6 +923,38 @@ public class CoinSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding the duplicate and missing numbers in an array.
+/// </summary>
+public class SetMismatchSolution {
+    /// <summary>
+    /// Finds the duplicate and missing numbers in the given array.
+    /// </summary>
+    /// <param name="nums">The array of numbers.</param>
+    /// <returns>An array containing the duplicate and missing numbers.</returns>
+    /// </summary>
+    public int[] FindErrorNums(int[] nums) {
+        int[] freq = new int[nums.Length + 1];
+        int dup = -1;
+        int missing = -1;
+
+        for (int i = 0; i < nums.Length; i++) {
+            freq[nums[i]]++;
+        }
+
+        for (int i = 1; i < freq.Length; i++) {
+            if (freq [i] == 0) {
+                missing = i;
+            }
+            else if (freq[i] == 2) {
+                dup = i;
+            }
+        }
+
+        return new int[] { dup, missing };
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
@@ -1100,5 +1132,14 @@ public class Program {
         FindWordsThatCanBeFormedByCharactersSolution sol28 = new FindWordsThatCanBeFormedByCharactersSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol28.CountCharacters(new string[] { "cat", "bt", "hat", "tree" }, "atach"));
+
+        SetMismatchSolution sol29 = new SetMismatchSolution();
+        System.Console.WriteLine();
+        int[] arr1 = { 1, 2, 2, 4 };
+
+        int[] resultArray3 = sol29.FindErrorNums(arr1);
+        foreach (int el in resultArray3){
+            System.Console.Write(el + " ");
+        }
     }
 }
