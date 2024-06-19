@@ -1071,6 +1071,67 @@ public class IslandPerimeterSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for counting the number of islands in a grid.
+/// </summary>
+public class NumberOfIslandsSolution {
+    /// <summary>
+    /// Represents an array of directions.
+    /// </summary>
+    private int[][] directions = new int[][] { 
+        new int[] { 1, 0 }, 
+        new int[] { -1, 0 }, 
+        new int[] { 0, 1 }, 
+        new int[] { 0, -1 } 
+    };
+
+    /// <summary>
+    /// Counts the number of islands in the given grid.
+    /// </summary>
+    /// <param name="grid">The grid representing the land and water.</param>
+    /// <returns>The number of islands in the grid.</returns>
+    public int NumIslands(char[][] grid) {
+        if (grid == null || grid.Length == 0) {
+            return 0;
+        }
+
+        int numIslands = 0;
+
+        for (int i = 0; i < grid.Length; i++) {
+            for (int j = 0; j < grid[0].Length; j++) {
+                if (grid[i][j] == '1') {
+                    numIslands++;
+                    DFS(grid, i, j);
+                }
+            }
+        }
+
+        return numIslands;
+    }
+
+    /// <summary>
+    /// Performs a depth-first search (DFS) on the given grid starting from the specified position (i, j).
+    /// </summary>
+    /// <param name="grid">The grid to perform the DFS on.</param>
+    /// <param name="i">The row index of the starting position.</param>
+    /// <param name="j">The column index of the starting position.</param>
+    private void DFS (char[][] grid, int i, int j) {
+        if (i < 0 || 
+        i >= grid.Length || 
+        j < 0 || 
+        j >= grid[0].Length || 
+        grid[i][j] == '0') {
+            return;
+        }
+
+        grid[i][j] = '0';
+
+        foreach (var direction in directions) {
+            DFS(grid, i + direction[0], j + direction[1]);
+        }
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
