@@ -981,6 +981,28 @@ public class FirstUniqueCharacterInAStringSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding the missing number in an array.
+/// </summary>
+public class MissingNumberSolution {
+    /// <summary>
+    /// Finds the missing number in the given array.
+    /// </summary>
+    /// <param name="nums">The array of numbers.</param>
+    /// <returns>The missing number.</returns>
+    public int MissingNumber(int[] nums) {
+        int expectedSum = 0;
+        int actualSum = 0;
+
+        for (int i = 0; i < nums.Length; i++) {
+            actualSum += nums[i];
+            expectedSum += i + 1;
+        }
+
+        return expectedSum - actualSum;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
@@ -1173,5 +1195,9 @@ public class Program {
         System.Console.WriteLine();
         System.Console.WriteLine(sol30.FirstUniqueChar("loveleetcode"));
 
+
+        MissingNumberSolution sol31 = new MissingNumberSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol31.MissingNumber(new int[] { 3, 0, 1 }));
     }
 }
