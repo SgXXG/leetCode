@@ -1003,6 +1003,40 @@ public class MissingNumberSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for determining if two binary trees are the same.
+/// </summary>
+public class SameTreeSolution {
+    /// <summary>
+    /// Determines if two binary trees are the same.
+    /// </summary>
+    /// <param name="p">The root node of the first binary tree.</param>
+    /// <param name="q">The root node of the second binary tree.</param>
+    /// <returns>True if the two binary trees are the same, false otherwise.</returns>
+    public bool IsSameTree(TreeNode p, TreeNode q) {
+        Queue<TreeNode> queue = new Queue<TreeNode>();
+        queue.Enqueue(p);
+        queue.Enqueue(q);
+
+        while (queue.Count > 0){
+            p = queue.Dequeue();
+            q = queue.Dequeue();
+
+            if (p == null && q == null) continue;
+            if (p == null || q == null) return false;
+            if (p.val != q.val) return false;
+
+            queue.Enqueue(p.left);
+            queue.Enqueue(q.left);
+
+            queue.Enqueue(p.right);
+            queue.Enqueue(q.right);
+        }
+
+        return true;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
