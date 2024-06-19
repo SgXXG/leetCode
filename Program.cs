@@ -1037,6 +1037,40 @@ public class SameTreeSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for calculating the perimeter of an island in a grid.
+/// </summary>
+public class IslandPerimeterSolution {
+    /// <summary>
+    /// Calculates the perimeter of an island in the given grid.
+    /// </summary>
+    /// <param name="grid">The grid representing the island.</param>
+    /// <returns>The perimeter of the island.</returns>
+    public int IslandPerimeter(int[][] grid) {
+        int rows = grid.Length;
+        int cols = grid[0].Length;
+        int perimeter = 0;
+
+        for (int i = 0; i< rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (grid[i][j] == 1) {
+                    perimeter += 4;
+
+                    if (i < rows - 1 && grid[i + 1][j] == 1) {
+                        perimeter -= 2;
+                    }
+
+                    if (j < cols - 1 && grid[i][j + 1] == 1) {
+                        perimeter -= 2;
+                    }
+                }
+            }
+        }
+
+        return perimeter;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
