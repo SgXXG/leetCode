@@ -1365,6 +1365,25 @@ public class HeightCheckerSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding three consecutive odd numbers in an array.
+/// </summary>
+public class ThreeConsecutiveOddsSolution {
+    /// <summary>
+    /// Determines whether there are three consecutive odd numbers in the given array.
+    /// </summary>
+    /// <param name="arr">The array of integers.</param>
+    /// <returns>True if there are three consecutive odd numbers, otherwise false.</returns>
+    public bool ThreeConsecutiveOdds(int[] arr) {
+        for (int i = 0; i < arr.Length - 2; i++) {
+            if ((arr[i] & 1) == 1 && (arr[i + 1] & 1) == 1 && (arr[i + 2] & 1) == 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
