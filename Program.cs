@@ -1132,6 +1132,25 @@ public class NumberOfIslandsSolution {
     }
 }
 
+public class LengthOfLastWordSolution {
+    private int lengthOfLastWord(string s){
+        int i = s.Length - 1;
+
+        while (s[i] == ' '){
+            i--;
+        }
+
+        int count = 0;
+
+        while (i >= 0 && s[i] != ' '){
+            i--;
+            count++;
+        }
+        
+        return count;
+    }
+} 
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
