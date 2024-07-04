@@ -1311,6 +1311,60 @@ public class ReplaceWordsSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for the height checker problem.
+/// </summary>
+public class HeightCheckerSolution {
+    /// <summary>
+    /// Calculates the number of elements in the given array that are out of order when compared to the sorted version of the array.
+    /// </summary>
+    /// <param name="heights">The array of heights to check.</param>
+    /// <returns>The number of elements that are out of order.</returns>
+    public int HeightChecker(int[] heights) {
+        /*int[] expected = (int[])heights.Clone();
+        Array.Sort(expected);
+
+        int count = 0;
+        for (int i = 0; i < heights.Length; i++) {
+            if (heights[i] != expected[i]) {
+                count++;
+            }
+        }
+        return count;
+        */
+
+        int maxHeight = 0;
+        foreach (int height in heights) {
+            if (height > maxHeight) {
+                maxHeight = height;
+            }
+        }
+
+        int[] count = new int[maxHeight + 1];
+        foreach (int height in heights) {
+            count[height]++;
+        }
+
+        int[] expected = new int[heights.Length];
+        int index = 0;
+        for (int height = 0; height <= maxHeight; height++) {
+            while (count[height] > 0) {
+                expected[index++] = height;
+                count[height]--;
+            }
+        }
+
+        int mismatchCount = 0;
+        for (int i = 0; i < heights.Length; i++) {
+            if (heights[i] != expected[i]) {
+                mismatchCount++;
+            }
+        }
+
+        return mismatchCount;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
