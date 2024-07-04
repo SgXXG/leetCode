@@ -1188,6 +1188,29 @@ public class LongestPalindromeSolution {
     }
 }
 
+public class RelativeSortArraySolution {
+    public int[] RelativeSortArray(int[] arr1, int[] arr2) {
+        Dictionary<int, int> map = new Dictionary<int, int>();
+        for (int i = 0; i < arr2.Length; i++) {
+            map[arr2[i]] = i;
+        }
+
+        Array.Sort(arr1, (a, b) => {
+            if (map.ContainsKey(a) && map.ContainsKey(b)) {
+                return map[a] - map[b];
+            } else if (map.ContainsKey(a)) {
+                return -1;
+            } else if (map.ContainsKey(b)) {
+                return 1;
+            } else {
+                return a - b;
+            }
+        });
+
+        return arr1;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
