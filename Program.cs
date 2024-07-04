@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.Concurrent;
+using System.Text;
 
 /// <summary>
 /// Represents a node in a linked list.
@@ -1236,6 +1237,39 @@ public class RelativeSortArraySolution {
         });
 
         return arr1;
+    }
+}
+
+/// <summary>
+/// Represents a solution for finding the intersection of two arrays.
+/// </summary>
+public class IntersectionOfTwoArraysTheSecondSolution {
+    /// <summary>
+    /// Finds the intersection of two arrays.
+    /// </summary>
+    /// <param name="nums1">The first array.</param>
+    /// <param name="nums2">The second array.</param>
+    /// <returns>An array containing the intersection of the two input arrays.</returns>
+    public int[] Intersection(int[] nums1, int[] nums2) {
+        Dictionary<int, int> count = new Dictionary<int, int>();
+        List<int> result = new List<int>();
+
+        foreach (int num in nums1) {
+            if (count.ContainsKey(num)) {
+                count[num]++;
+            } else {
+                count[num] = 1;;
+            }
+        }
+
+        foreach (int num in nums2) {
+            if (count.ContainsKey(num) && count[num] > 0) {
+                result.Add(num);
+                count[num]--;
+            }
+        }
+
+        return result.ToArray();
     }
 }
 
