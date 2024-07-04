@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using System.Text;
+
+/// <summary>
 /// Represents a node in a linked list.
 /// </summary>
 public class ListNode {
@@ -1166,6 +1168,23 @@ public class NthTribonacciNumberSolution {
         }
 
         return tribonacci[n];
+    }
+}
+
+public class LongestPalindromeSolution {
+    public int LongestPalindrome(string s) {
+        HashSet<char> oddChars = new HashSet<char>();
+        
+        foreach (char c in s) {
+            if (oddChars.Contains(c)) {
+                oddChars.Remove(c);
+            } else {
+                oddChars.Add(c);
+            }
+        }
+
+        int oddCount = oddChars.Count;
+        return s.Length - oddCount + (oddCount > 0 ? 1 : 0);
     }
 }
 
