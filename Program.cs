@@ -1134,7 +1134,15 @@ public class NumberOfIslandsSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding the length of the last word in a string.
+/// </summary>
 public class LengthOfLastWordSolution {
+    /// <summary>
+    /// Calculates the length of the last word in the given string.
+    /// </summary>
+    /// <param name="s">The input string.</param>
+    /// <returns>The length of the last word.</returns>
     private int lengthOfLastWord(string s){
         int i = s.Length - 1;
 
@@ -1153,6 +1161,9 @@ public class LengthOfLastWordSolution {
     }
 } 
 
+/// <summary>
+/// Represents a solution for finding the Nth Tribonacci number.
+/// </summary>
 public class NthTribonacciNumberSolution {
     private int Tribonacci (int n){
         if (n == 0) return 0;
@@ -1171,7 +1182,15 @@ public class NthTribonacciNumberSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding the length of the longest palindrome in a given string.
+/// </summary>
 public class LongestPalindromeSolution {
+    /// <summary>
+    /// Finds the length of the longest palindrome in the given string.
+    /// </summary>
+    /// <param name="s">The input string.</param>
+    /// <returns>The length of the longest palindrome.</returns>
     public int LongestPalindrome(string s) {
         HashSet<char> oddChars = new HashSet<char>();
         
@@ -1188,7 +1207,16 @@ public class LongestPalindromeSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for sorting an array based on the relative order of elements in another array.
+/// </summary>
 public class RelativeSortArraySolution {
+    /// <summary>
+    /// Sorts the given array <paramref name="arr1"/> based on the relative order of elements in <paramref name="arr2"/>.
+    /// </summary>
+    /// <param name="arr1">The array to be sorted.</param>
+    /// <param name="arr2">The array that defines the relative order of elements.</param>
+    /// <returns>The sorted array.</returns>
     public int[] RelativeSortArray(int[] arr1, int[] arr2) {
         Dictionary<int, int> map = new Dictionary<int, int>();
         for (int i = 0; i < arr2.Length; i++) {
