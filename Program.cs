@@ -1273,6 +1273,44 @@ public class IntersectionOfTwoArraysTheSecondSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for replacing words in a sentence based on a given dictionary.
+/// </summary>
+public class ReplaceWordsSolution {
+    /// <summary>
+    /// Replaces words in the given sentence based on the shortest root found in the dictionary.
+    /// </summary>
+    /// <param name="dictionary">The list of words in the dictionary.</param>
+    /// <param name="sentence">The sentence to be processed.</param>
+    /// <returns>The sentence with replaced words.</returns>
+    public string ReplaceWords(IList<string> dictionary, string sentence) {
+        SortedSet<string> rootSet = new SortedSet<string>(dictionary);
+        string[] words = sentence.Split(' ');
+
+        for (int i = 0; i < words.Length; i++) {
+            words[i] = GetShortestRoot(words[i], rootSet);
+        }
+
+        return string.Join(" ", words);
+    }
+
+    /// <summary>
+    /// Finds the shortest root in a given word from a sorted set of roots.
+    /// </summary>
+    /// <param name="word">The word to find the shortest root in.</param>
+    /// <param name="rootSet">The sorted set of roots to search in.</param>
+    /// <returns>The shortest root found in the word, or the word itself if no root is found.</returns>
+    private string GetShortestRoot(string word, SortedSet<string> rootSet) {
+        foreach (string root in rootSet) {
+            if (word.StartsWith(root)) {
+                return root;
+            }
+        }
+
+        return word;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
