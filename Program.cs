@@ -1419,6 +1419,45 @@ public class MajorityElementSolution {
     }
 }
 
+/// <summary>
+/// Represents a class that finds the first palindromic string in an array of words.
+/// </summary>
+public class FindFirstPalindromicStringInTheArray {
+    /// <summary>
+    /// Finds the first palindromic string in the given array of words.
+    /// </summary>
+    /// <param name="words">The array of words to search.</param>
+    /// <returns>The first palindromic string found, or an empty string if no palindromic string is found.</returns>
+    public string FirstPalindrome (string[] words) {
+        foreach (string word in words) {
+            if (IsPalindrome(word)) {
+                return word;
+            }
+        }
+        return "";
+    }
+
+    /// <summary>
+    /// Determines whether a given word is a palindrome.
+    /// </summary>
+    /// <param name="word">The word to check.</param>
+    /// <returns>True if the word is a palindrome, false otherwise.</returns>
+    private bool IsPalindrome (string word) {
+        int left = 0;
+        int right = word.Length - 1;
+
+        while (left < right) {
+            if (word[left] != word[right]) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
