@@ -1384,6 +1384,41 @@ public class ThreeConsecutiveOddsSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding the majority element in an array.
+/// </summary>
+public class MajorityElementSolution {
+    /// <summary>
+    /// Finds the majority element in the given array.
+    /// </summary>
+    /// <param name="nums">The array of integers.</param>
+    /// <returns>The majority element, or 0 if there is no majority element.</returns>
+    public int MajorityElement(int[] nums) {
+        int count = 0;
+        int candidate = 0;
+
+        foreach (int num in nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+            count += (num == candidate) ? 1 : -1;
+        }
+
+        count = 0;
+        foreach (int num in nums) {
+            if (num == candidate) {
+                count++;
+            }
+        }
+
+        if (count > nums.Length / 2) {
+            return candidate;
+        }
+
+        return 0;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
