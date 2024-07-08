@@ -1491,6 +1491,31 @@ public class FindTheTownJudgeSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding the maximum odd binary number.
+/// </summary>
+public class MaximumOddBinaryNumberSolution {
+    /// <summary>
+    /// Finds the maximum odd binary number based on the given string.
+    /// </summary>
+    /// <param name="s">The input string.</param>
+    /// <returns>The maximum odd binary number.</returns>
+    public string MaximumOddBinaryNumber (string s) {
+        int ones = 0;
+        int zeros = 0;
+
+        foreach (char c in s) {
+            if (c == '1') {
+                ones++;
+            } else {
+                zeros++;
+            }
+        }
+
+        return new string('1', ones - 1) + new string ('0', zeros) + 1;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
