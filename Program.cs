@@ -1458,6 +1458,39 @@ public class FindFirstPalindromicStringInTheArray {
     }
 }
 
+/// <summary>
+/// Represents a solution for finding the town judge.
+/// </summary>
+public class FindTheTownJudgeSolution {
+    /// <summary>
+    /// Finds the town judge based on the given trust relationships.
+    /// </summary>
+    /// <param name="n">The number of people in the town.</param>
+    /// <param name="trust">The trust relationships represented as an array of integer arrays.</param>
+    /// <returns>The town judge's label if found, otherwise -1.</returns>
+    public int FindJudge(int n, int[][] trust) {
+        if (n == 1) return 1;
+
+        int[] trustCount = new int[n + 1];
+
+        foreach (var tr in trust) {
+            int a = tr[0];
+            int b = tr[1];
+
+            trustCount[a]--;
+            trustCount[b]++;
+        }
+
+        for (int i =1; i <= n; i++) {
+            if (trustCount[i] == n - 1) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
