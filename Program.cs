@@ -1516,6 +1516,43 @@ public class MaximumOddBinaryNumberSolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for counting elements with maximum frequency in an array.
+/// </summary>
+public class CountElementsWithMaximumRequencySolution {
+    /// <summary>
+    /// Calculates the total count of elements with the maximum frequency in the given array.
+    /// </summary>
+    /// <param name="nums">The array of integers.</param>
+    /// <returns>The total count of elements with the maximum frequency.</returns>
+    public int maxFrequencyElements(int[] nums) {
+        Dictionary<int, int> frequencyMap = new Dictionary<int, int>();
+
+        foreach (int num in nums) {
+            if (frequencyMap.ContainsKey(num)) {
+                frequencyMap[num]++;
+            }
+            else {
+                frequencyMap[num] = 1;
+            }
+        }
+
+        int maxFrequency = 0;
+        foreach (int frequency in frequencyMap.Values) {
+            maxFrequency = Math.Max(maxFrequency, frequency);
+        }
+
+        int total = 0;
+        foreach (int frequency in frequencyMap.Values) {
+            if (frequency == maxFrequency) {
+                total += frequency;
+            }
+        }
+
+        return total;
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
