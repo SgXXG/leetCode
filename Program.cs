@@ -1553,6 +1553,63 @@ public class CountElementsWithMaximumRequencySolution {
     }
 }
 
+/// <summary>
+/// Represents a solution for the Game of Life problem.
+/// </summary>
+public class GameOfLifeSolution {
+    // __define-ocg__ This method calculates the next generation of the Game of Life
+    public string CodingChallenge(string str) {
+        // Parse the input string to create the grid
+        string[] rows = str.Split('_');
+        int n = rows.Length;
+        int m = rows[0].Length;
+        int[,] grid = new int[n, m];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                grid[i, j] = rows[i][j] - '0';
+            }
+        }
+
+        // Create a copy of the grid to store the next generation
+        int[,] gridCopy = new int[n, m];
+        int[] directions = { -1, 0, 1 };
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                int liveNeighbors = 0;
+                foreach (int dirI in directions) {
+                    foreach (int dirJ in directions) {
+                        if (dirI == 0 && dirJ == 0) continue;
+                        int nI = i + dirI;
+                        int nJ = j + dirJ;
+                        if (nI >= 0 && nI < n && nJ >= 0 && nJ < m && grid[nI, nJ] == 1) {
+                            liveNeighbors++;
+                        }
+                    }
+                }
+
+                if (grid[i, j] == 1 && (liveNeighbors < 2 || liveNeighbors > 3)) {
+                    gridCopy[i, j] = 0; // Death
+                } else if (grid[i, j] == 0 && liveNeighbors == 3) {
+                    gridCopy[i, j] = 1; // Alive
+                } else {
+                    gridCopy[i, j] = grid[i, j]; // Same state
+                }
+            }
+        }
+
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            if (i > 0) result.Append('_');
+            for (int j = 0; j < m; j++) {
+                result.Append(gridCopy[i, j]);
+            }
+        }
+
+        return result.ToString();
+    }
+}
+
 public class Program {
     public static void Main() {
         LinkedListSolution sol0 = new LinkedListSolution();
@@ -1749,5 +1806,10 @@ public class Program {
         MissingNumberSolution sol31 = new MissingNumberSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol31.MissingNumber(new int[] { 3, 0, 1 }));
+
+        GameOfLifeSolution sol = new GameOfLifeSolution();
+        string input = "11";
+        string varOcg = sol.CodingChallenge(input); // Variable named varOcg
+        Console.WriteLine(varOcg); // Output should be "010_010_010"
     }
 }
