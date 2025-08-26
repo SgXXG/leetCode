@@ -1,5 +1,4 @@
 ﻿using System.Collections.Concurrent;
-using System.Data.SqlTypes;
 using System.Text;
 
 /// <summary>
@@ -1760,6 +1759,38 @@ public class IsValidSudokuSolution
     }
 }
 
+/// <summary>
+/// Represents a solution for incrementing a large integer represented as an array.
+/// </summary>
+public class PlusOneSolution
+{
+    /// <summary>
+    /// Increments the large integer represented by the array <paramref name="digits"/> by one.
+    /// </summary>
+    /// <param name="digits">An array of digits representing a non-negative integer, ordered from most significant to least significant.</param>
+    /// <returns>
+    /// An array of digits representing the incremented integer.
+    /// </returns>
+    /// <remarks>
+    /// The input array does not contain leading zeros.
+    /// </remarks>
+    public int[] PlusOne(int[] digits)
+    {
+        for (int i = digits.Length - 1; i >= 0; i--)
+        {
+            if (digits[i] < 9)
+            {
+                digits[i]++;
+                return digits;
+            }
+            digits[i] = 0;
+        }
+        int[] result = new int[digits.Length + 1];
+        result[0] = 1;
+        return result;
+    }
+}
+
 public class Program
 {
     public static void Main()
@@ -2007,5 +2038,14 @@ public class Program
             new char[] { '.', '.', '.', '.', '8', '.', '.', '7', '9' }
         };
         System.Console.WriteLine(sol35.IsValidSudoku(board));
+
+        PlusOneSolution sol36 = new PlusOneSolution();
+        System.Console.WriteLine();
+        int[] digits = { 1, 2, 3 };
+        int[] resultArray5 = sol36.PlusOne(digits);
+        foreach (int el in resultArray5)
+        {
+            System.Console.Write(el + " ");
+        }
     }
 }
