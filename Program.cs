@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Data.SqlTypes;
 using System.Text;
 
 /// <summary>
@@ -1642,6 +1643,33 @@ public class TwoSumSolution
     }
 }
 
+/// <summary>
+/// Determines whether an integer is a palindrome.
+/// </summary>
+public class IsPalindromeSolution
+{
+    /// <summary>
+    /// Checks if the given integer <paramref name="x"/> is a palindrome.
+    /// </summary>
+    /// <param name="x">The integer to check.</param>
+    /// <returns>
+    /// True if <paramref name="x"/> is a palindrome; otherwise, false.
+    /// </returns>
+    public bool IsPalindrome(int x)
+    {
+        string str = x.ToString();
+        char[] nums = str.ToCharArray();
+
+        Array.Reverse(nums);
+        string revertedStr = new string(nums);
+
+        if (str == revertedStr)
+            return true;
+
+        return false;
+    }
+}
+
 public class Program
 {
     public static void Main()
@@ -1851,8 +1879,8 @@ public class Program
 
         GameOfLifeSolution sol = new GameOfLifeSolution();
         string input = "11";
-        string varOcg = sol.CodingChallenge(input); // Variable named varOcg
-        Console.WriteLine(varOcg); // Output should be "010_010_010"
+        string varOcg = sol.CodingChallenge(input);
+        Console.WriteLine(varOcg);
 
         TwoSumSolution sol32 = new TwoSumSolution();
         System.Console.WriteLine();
@@ -1863,5 +1891,10 @@ public class Program
         {
             System.Console.Write(el + " ");
         }
+
+        IsPalindromeSolution sol33 = new IsPalindromeSolution();
+        System.Console.WriteLine();
+        bool newSol33 = sol33.IsPalindrome(11);
+        Console.WriteLine(newSol33);
     }
 }
