@@ -1610,27 +1610,63 @@ public class GameOfLifeSolution {
     }
 }
 
-public class Program {
-    public static void Main() {
+/// <summary>
+/// Represents a solution for the Two Sum problem.
+/// </summary>
+public class TwoSumSolution
+{
+    /// <summary>
+    /// Finds two indices of the numbers in the array that add up to the specified target.
+    /// </summary>
+    /// <param name="nums">The input array of integers.</param>
+    /// <param name="target">The target sum.</param>
+    /// <returns>
+    /// An array containing the indices of the two numbers that add up to the target.
+    /// </returns>
+    /// <exception cref="ArgumentException">
+    /// Thrown when no two numbers add up to the target.
+    /// </exception>
+    public int[] TwoSum(int[] nums, int target)
+    {
+        Dictionary<int, int> numToIndex = new Dictionary<int, int>();
+        for (int i = 0; i < nums.Length; i++)
+        {
+            int complement = target - nums[i];
+            if (numToIndex.ContainsKey(complement))
+            {
+                return new int[] { numToIndex[complement], i };
+            }
+            numToIndex[nums[i]] = i;
+        }
+        throw new ArgumentException("No two sum solution");
+    }
+}
+
+public class Program
+{
+    public static void Main()
+    {
         LinkedListSolution sol0 = new LinkedListSolution();
-        
+
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);
         head.next.next = new ListNode(3);
         head.next.next.next = new ListNode(-3);
         head.next.next.next.next = new ListNode(1);
-        
+
         ListNode res = sol0.RemoveZeroSumSublists(head);
-        while (res != null){
+        while (res != null)
+        {
             Console.Write(res.val + " ");
             res = res.next;
         }
 
         SquaresOfASortedArraySolution sol1 = new SquaresOfASortedArraySolution();
         int[] numbers = { -4, -1, 0, 3, 10 };
-        numbers = sol1.SortedSqaures(numbers); 
+        numbers = sol1.SortedSqaures(numbers);
         System.Console.WriteLine();
-        foreach (int num in numbers){
+        foreach (int num in numbers)
+        {
             Console.Write(num + " ");
         }
 
@@ -1662,14 +1698,16 @@ public class Program {
         System.Console.WriteLine();
         int[][] image = { new int[] { 1, 1, 1 }, new int[] { 1, 0, 1 }, new int[] { 1, 1, 1 } };
         int[][] updatedImage = sol8.ImageSmoother(image);
-        foreach (int[] row in updatedImage){
-            foreach (int num in row){
+        foreach (int[] row in updatedImage)
+        {
+            foreach (int num in row)
+            {
                 Console.Write(num + " ");
             }
         }
 
         ValidAnagramSolution sol9 = new ValidAnagramSolution();
-        System.Console.WriteLine(); 
+        System.Console.WriteLine();
         System.Console.WriteLine(sol9.IsAnagram("anagram", "nagaram"));
 
         ElementAppearingMoreThen25PerCentSolution sol10 = new ElementAppearingMoreThen25PerCentSolution();
@@ -1736,7 +1774,8 @@ public class Program {
         System.Console.WriteLine();
         int[] nums = { 1, 2, 3, 4 };
         int[] resultArray = sol22.ProductExceptSelf(nums);
-        foreach (int num in resultArray){
+        foreach (int num in resultArray)
+        {
             System.Console.Write(num + " ");
         }
         System.Console.WriteLine();
@@ -1746,9 +1785,10 @@ public class Program {
 
         int[] nums1 = { 1, 2, 2, 1 };
         int[] nums2 = { 2, 2 };
-        
+
         int[] resultArr = sol23.Intersection(nums1, nums2);
-        foreach (int num in resultArr){
+        foreach (int num in resultArr)
+        {
             System.Console.Write(num + " ");
         }
         System.Console.WriteLine();
@@ -1775,11 +1815,12 @@ public class Program {
 
         SortIntegersByTheNumberOf1BitsSolution sol27 = new SortIntegersByTheNumberOf1BitsSolution();
         System.Console.WriteLine();
-        
+
         int[] arr = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
-        
+
         int[] resultArray2 = sol27.SortByBits(arr);
-        foreach (int num in resultArray2){
+        foreach (int num in resultArray2)
+        {
             System.Console.Write(num + " ");
         }
         System.Console.WriteLine();
@@ -1793,7 +1834,8 @@ public class Program {
         int[] arr1 = { 1, 2, 2, 4 };
 
         int[] resultArray3 = sol29.FindErrorNums(arr1);
-        foreach (int el in resultArray3){
+        foreach (int el in resultArray3)
+        {
             System.Console.Write(el + " ");
         }
         System.Console.WriteLine();
@@ -1811,5 +1853,15 @@ public class Program {
         string input = "11";
         string varOcg = sol.CodingChallenge(input); // Variable named varOcg
         Console.WriteLine(varOcg); // Output should be "010_010_010"
+
+        TwoSumSolution sol32 = new TwoSumSolution();
+        System.Console.WriteLine();
+        int[] arr2 = { 2, 7, 11, 15 };
+        int target = 9;
+        int[] resultArray4 = sol32.TwoSum(arr2, target);
+        foreach (int el in resultArray4)
+        {
+            System.Console.Write(el + " ");
+        }
     }
 }
