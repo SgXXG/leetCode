@@ -1700,6 +1700,66 @@ public class SearchInsertSolution
     }
 }
 
+/// <summary>
+/// Represents a solution for validating a 9x9 Sudoku board.
+/// </summary>
+public class IsValidSudokuSolution
+{
+    /// <summary>
+    /// Determines if a 9x9 Sudoku board is valid.
+    /// Only the filled cells need to be validated according to the following rules:
+    /// - Each row must contain the digits 1-9 without repetition.
+    /// - Each column must contain the digits 1-9 without repetition.
+    /// - Each of the nine 3x3 sub-boxes must contain the digits 1-9 without repetition.
+    /// </summary>
+    /// <param name="board">A 9x9 2D char array representing the Sudoku board.</param>
+    /// <returns>True if the board is valid, otherwise false.</returns>
+    public bool IsValidSudoku(char[][] board)
+    {
+        HashSet<char>[] rows = new HashSet<char>[9];
+        HashSet<char>[] cols = new HashSet<char>[9];
+        HashSet<char>[] boxes = new HashSet<char>[9];
+
+        for (int i = 0; i < 9; i++)
+        {
+            rows[i] = new HashSet<char>();
+            cols[i] = new HashSet<char>();
+            boxes[i] = new HashSet<char>();
+        }
+
+        for (int i = 0; i < 9; i++)
+        {
+            for (int j = 0; j < 9; j++)
+            {
+                char c = board[i][j];
+                if (c == '.')
+                    continue;
+
+                // Check row
+                if (rows[i].Contains(c))
+                    return false;
+
+                rows[i].Add(c);
+
+                // Check column
+                if (cols[j].Contains(c))
+                    return false;
+
+                cols[j].Add(c);
+
+                // Check 3x3 box
+                int boxIdx = (i / 3) * 3 + (j / 3);
+
+                if (boxes[boxIdx].Contains(c))
+                    return false;
+
+                boxes[boxIdx].Add(c);
+            }
+        }
+        return true;
+    }
+}
+
 public class Program
 {
     public static void Main()
@@ -1924,13 +1984,28 @@ public class Program
 
         IsPalindromeSolution sol33 = new IsPalindromeSolution();
         System.Console.WriteLine();
-        bool newSol33 = sol33.IsPalindrome(11);
-        Console.WriteLine(newSol33);
+        Console.WriteLine(sol33.IsPalindrome(11));
 
         SearchInsertSolution sol34 = new SearchInsertSolution();
         System.Console.WriteLine();
         int[] arr3 = { 1, 2, 3, 4, 5, 6, 7 };
         int newsol34 = sol34.SearchInsert(arr3, 1);
         System.Console.WriteLine(newsol34);
+
+        IsValidSudokuSolution sol35 = new IsValidSudokuSolution();
+        System.Console.WriteLine();
+        char[][] board = new char[][]
+        {
+            new char[] { '5', '3', '.', '.', '7', '.', '.', '.', '.' },
+            new char[] { '6', '.', '.', '1', '9', '5', '.', '.', '.' },
+            new char[] { '.', '9', '8', '.', '.', '.', '.', '6', '.' },
+            new char[] { '8', '.', '.', '.', '6', '.', '.', '.', '3' },
+            new char[] { '4', '.', '.', '8', '.', '3', '.', '.', '1' },
+            new char[] { '7', '.', '.', '.', '2', '.', '.', '.', '6' },
+            new char[] { '.', '6', '.', '.', '.', '.', '2', '8', '.' },
+            new char[] { '.', '.', '.', '4', '1', '9', '.', '.', '5' },
+            new char[] { '.', '.', '.', '.', '8', '.', '.', '7', '9' }
+        };
+        System.Console.WriteLine(sol35.IsValidSudoku(board));
     }
 }

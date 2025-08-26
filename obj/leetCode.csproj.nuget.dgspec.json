@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\git\\leetCode\\leetCode.csproj": {}
+    "D:\\git\\leetCode\\leetCode.csproj": {}
   },
   "projects": {
-    "d:\\git\\leetCode\\leetCode.csproj": {
+    "D:\\git\\leetCode\\leetCode.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\git\\leetCode\\leetCode.csproj",
+        "projectUniqueName": "D:\\git\\leetCode\\leetCode.csproj",
         "projectName": "leetCode",
-        "projectPath": "d:\\git\\leetCode\\leetCode.csproj",
+        "projectPath": "D:\\git\\leetCode\\leetCode.csproj",
         "packagesPath": "C:\\Users\\sgxxg.LOCAL\\.nuget\\packages\\",
-        "outputPath": "d:\\git\\leetCode\\obj\\",
+        "outputPath": "D:\\git\\leetCode\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sgxxg.LOCAL\\AppData\\Roaming\\NuGet\\NuGet.Config"
