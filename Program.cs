@@ -1670,6 +1670,36 @@ public class IsPalindromeSolution
     }
 }
 
+/// <summary>
+/// Search Insert Position solution.
+/// </summary>
+public class SearchInsertSolution
+{
+    /// <summary>
+    /// Given a sorted array of distinct integers and a target value, returns the index if the target is found.
+    /// If not, returns the index where it would be if it were inserted in order.
+    /// Uses binary search for O(log n) runtime.
+    /// </summary>
+    /// <param name="nums">Sorted array of distinct integers.</param>
+    /// <param name="target">Target value to search for.</param>
+    /// <returns>Index of target if found, or insertion index if not found.</returns>
+    public int SearchInsert(int[] nums, int target)
+    {
+        int left = 0, right = nums.Length - 1;
+        while (left <= right)
+        {
+            int mid = left + (right - left) / 2;
+            if (nums[mid] == target)
+                return mid;
+            else if (nums[mid] < target)
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+        return left;
+    }
+}
+
 public class Program
 {
     public static void Main()
@@ -1896,5 +1926,11 @@ public class Program
         System.Console.WriteLine();
         bool newSol33 = sol33.IsPalindrome(11);
         Console.WriteLine(newSol33);
+
+        SearchInsertSolution sol34 = new SearchInsertSolution();
+        System.Console.WriteLine();
+        int[] arr3 = { 1, 2, 3, 4, 5, 6, 7 };
+        int newsol34 = sol34.SearchInsert(arr3, 1);
+        System.Console.WriteLine(newsol34);
     }
 }
