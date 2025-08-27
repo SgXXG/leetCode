@@ -896,31 +896,62 @@ public class FindWordsThatCanBeFormedByCharactersSolution {
     }
 }
 
-public class CoinSolution {
-    public class Coin { 
+/// <summary>
+/// Provides classes and methods for simulating coins and finding the "wonderful" coin.
+/// </summary>
+public class CoinSolution
+{
+    /// <summary>
+    /// Represents a coin with a probability of landing tails.
+    /// </summary>
+    public class Coin
+    {
         public double Probability { get; set; }
     }
 
-    public class Solution {
+    /// <summary>
+    /// Provides a solution for finding the "wonderful" coin among a set of coins.
+    /// </summary>
+    public class Solution
+    {
         private Random random = new Random();
 
-        public Coin FindWonderfullCoin(Coin[] coins, int K) {
+        /// <summary>
+        /// Finds the "wonderful" coin from the given array of coins by simulating K flips for each coin.
+        /// The "wonderful" coin is the one whose estimated probability of tails is closest to 0.5,
+        /// and returns the 4th closest coin if there are at least 4 coins.
+        /// </summary>
+        /// <param name="coins">Array of Coin objects.</param>
+        /// <param name="K">Number of flips to estimate the probability.</param>
+        /// <returns>
+        /// The 4th closest coin to fair (probability 0.5) if there are at least 4 coins; otherwise, null.
+        /// </returns>
+        public Coin FindWonderfullCoin(Coin[] coins, int K)
+        {
             double[] estimates = new double[coins.Length];
 
-            for (int i = 0; i < coins.Length; i++) {
+            for (int i = 0; i < coins.Length; i++)
+            {
                 int tails = 0;
-                for (int j = 0; j < K; j++) {
+                for (int j = 0; j < K; j++)
+                {
                     if (FlipCoin(coins[i]))
                         tails++;
                 }
-                estimates[i] = Math.Abs(tails / (double) K - 0.5);
+                estimates[i] = Math.Abs(tails / (double)K - 0.5);
             }
 
             Array.Sort(estimates, coins);
             return coins.Length >= 4 ? coins[3] : null;
         }
 
-        private bool FlipCoin(Coin coin) {
+        /// <summary>
+        /// Simulates flipping the given coin.
+        /// </summary>
+        /// <param name="coin">The coin to flip.</param>
+        /// <returns>True if the coin lands tails, otherwise false.</returns>
+        private bool FlipCoin(Coin coin)
+        {
             return random.NextDouble() < coin.Probability;
         }
     }
@@ -1791,6 +1822,81 @@ public class PlusOneSolution
     }
 }
 
+/// <summary>
+/// Represents a solution for adding two binary strings.
+/// </summary>
+public class AddBinarySolution
+{
+    /// <summary>
+    /// Adds two binary strings and returns their sum as a binary string.
+    /// </summary>
+    /// <param name="a">The first binary string.</param>
+    /// <param name="b">The second binary string.</param>
+    /// <returns>The sum of the two binary strings as a binary string.</returns>
+    public string AddBinary(string a, string b)
+    {
+        var sb = new StringBuilder();
+
+        var carry = 0;
+
+        var iA = a.Length - 1;
+        var iB = b.Length - 1;
+
+        while (iA >= 0 || iB >= 0 || carry > 0)
+        {
+            var bA = iA < 0 ? 0 : a[iA] - '0';
+            var bB = iB < 0 ? 0 : b[iB] - '0';
+
+            sb.Insert(0, (bA + bB + carry) % 2);
+
+            carry = (bA + bB + carry) / 2;
+
+            iA--;
+            iB--;
+        }
+
+        return sb.ToString();
+    }
+}
+
+/// <summary>
+/// Provides a solution for computing the integer square root of a non-negative integer.
+/// </summary>
+public class MySqrtSolution
+{
+    /// <summary>
+    /// Computes and returns the integer part of the square root of <paramref name="x"/>.
+    /// </summary>
+    /// <param name="x">A non-negative integer.</param>
+    /// <returns>
+    /// The integer part of the square root of <paramref name="x"/>.
+    /// </returns>
+    /// <remarks>
+    /// Uses binary search to avoid overflow and achieve O(log x) time complexity.
+    /// </remarks>
+    public int MySqrt(int x)
+    {
+        if (x < 2) return x;
+
+        int left = 1, right = x / 2, ans = 0;
+        while (left <= right)
+        {
+            int mid = left + (right - left) / 2;
+            long sq = (long)mid * mid;
+            if (sq == x)
+                return mid;
+            else if (sq < x)
+            {
+                ans = mid;
+                left = mid + 1;
+            }
+            else
+                right = mid - 1;
+        }
+        return ans;
+    }
+}
+
 public class Program
 {
     public static void Main()
@@ -2047,5 +2153,13 @@ public class Program
         {
             System.Console.Write(el + " ");
         }
+
+        AddBinarySolution sol37 = new AddBinarySolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol37.AddBinary("11", "1"));
+
+        MySqrtSolution sol38 = new MySqrtSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol38.MySqrt(4));
     }
 }
