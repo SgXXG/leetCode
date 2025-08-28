@@ -1897,6 +1897,161 @@ public class MySqrtSolution
     }
 }
 
+/// <summary>
+/// Represents a solution for determining if a string is a valid palindrome,
+/// considering only alphanumeric characters and ignoring cases.
+/// </summary>
+public class IsValidPalindromeSolution
+{
+    /// <summary>
+    /// Determines whether the input string <paramref name="s"/> is a palindrome,
+    /// considering only alphanumeric characters and ignoring case.
+    /// </summary>
+    /// <param name="s">The input string to check.</param>
+    /// <returns>
+    /// True if <paramref name="s"/> is a valid palindrome; otherwise, false.
+    /// </returns>
+    public bool IsPalindrome(string s)
+    {
+        s = s.ToLower();
+        List<char> letters = Enumerable.Range('a', 'z' - 'a' + 1).Select(c => (char)c).ToList<char>();
+        List<char> nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+        char[] el = s.ToCharArray();
+        StringBuilder sb = new StringBuilder();
+
+        foreach (var element in el)
+        {
+            if (letters.Contains(element) || nums.Contains(element))
+            {
+                sb.Append(element);
+            }
+        }
+
+        string str = sb.ToString();
+        char[] strArr = str.ToCharArray();
+
+        Array.Reverse(strArr);
+        string revertedStr = new string(strArr);
+
+        if (str == revertedStr)
+            return true;
+
+        return false;
+    }
+}
+
+/// <summary>
+/// Represents a solution for finding the single number in an array where every element appears twice except for one.
+/// </summary>
+public class SingleNumberSolution
+{
+    /// <summary>
+    /// Finds the element that appears only once in the array <paramref name="nums"/>, where every other element appears exactly twice.
+    /// </summary>
+    /// <param name="nums">The input array of integers.</param>
+    /// <returns>The single number that appears only once.</returns>
+    /// <remarks>
+    /// Uses bitwise XOR to cancel out duplicate numbers, resulting in the unique number.
+    /// Time complexity: O(n). Space complexity: O(1).
+    /// </remarks>
+    public int SingleNumber(int[] nums)
+    {
+        int result = 0;
+        foreach (int el in nums)
+        {
+            result ^= el;
+        }
+        return result;
+    }
+}
+
+/// <summary>
+/// Represents a solution for converting a positive integer to its corresponding Excel column title.
+/// </summary>
+public class ConvertToTitleSolution
+{
+    /// <summary>
+    /// Converts the given positive integer <paramref name="columnNumber"/> to its corresponding Excel column title.
+    /// </summary>
+    /// <param name="columnNumber">The positive integer to convert.</param>
+    /// <returns>
+    /// A string representing the Excel column title.
+    /// </returns>
+    /// <remarks>
+    /// For example, 1 -> "A", 28 -> "AB", 701 -> "ZY".
+    /// </remarks>
+    public string ConvertToTitle(int columnNumber)
+    {
+        var result = new System.Text.StringBuilder();
+        while (columnNumber > 0)
+        {
+            columnNumber -= 1;
+            int rem = columnNumber % 26;
+            char letter = (char)('A' + rem);
+            result.Insert(0, letter);
+            columnNumber /= 26;
+        }
+        return result.ToString();
+    }
+}
+
+/// <summary>
+/// Represents a solution for converting an Excel column title to its corresponding number.
+/// </summary>
+public class TitleToNumberSolution
+{
+    /// <summary>
+    /// Converts the given Excel column title <paramref name="columnTitle"/> to its corresponding number.
+    /// </summary>
+    /// <param name="columnTitle">The Excel column title (e.g., "A", "AB", "ZY").</param>
+    /// <returns>
+    /// The integer value corresponding to the Excel column title.
+    /// </returns>
+    /// <remarks>
+    /// For example, "A" -> 1, "AB" -> 28, "ZY" -> 701, "AAA" -> 703.
+    /// </remarks>
+    public int TitleToNumber(string columnTitle)
+    {
+        int result = 0;
+        columnTitle = columnTitle.ToUpper().Trim();
+        foreach (char c in columnTitle)
+        {
+            int value = c - 'A' + 1;
+            result = result * 26 + value;
+        }
+        return result;
+    }
+}
+
+public class HappyNumberSolution
+{
+    public bool IsHappy(int n) {
+        char[] arr = n.ToString().ToCharArray();
+        double num = 0;
+
+        for (int i = 0; i < arr.Length; i++)
+        {
+            num += Math.Pow(char.GetNumericValue(arr[i]), 2);
+        }
+
+        while (num > 0)
+        {
+            char[] tempArr = num.ToString().ToCharArray();
+            num = 0;
+
+            for (int i = 0; i < tempArr.Length; i++)
+            {
+                num += Math.Pow(char.GetNumericValue(tempArr[i]), 2);
+            }
+
+            if (num == 1)
+                return true;
+        }
+
+        return false;
+    }
+}
+
 public class Program
 {
     public static void Main()
@@ -2161,5 +2316,25 @@ public class Program
         MySqrtSolution sol38 = new MySqrtSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol38.MySqrt(4));
+
+        IsValidPalindromeSolution sol39 = new IsValidPalindromeSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol39.IsPalindrome("A man, a plan, a canal: Panama"));
+
+        SingleNumberSolution sol40 = new SingleNumberSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol40.SingleNumber([2, 2, 1]));
+
+        ConvertToTitleSolution sol41 = new ConvertToTitleSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol41.ConvertToTitle(1));
+
+        TitleToNumberSolution sol42 = new TitleToNumberSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol42.TitleToNumber("AAA"));
+
+        HappyNumberSolution sol43 = new HappyNumberSolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol43.IsHappy(2));
     }
 }
