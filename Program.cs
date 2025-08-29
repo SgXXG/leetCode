@@ -2023,32 +2023,50 @@ public class TitleToNumberSolution
     }
 }
 
+/// <summary>
+/// Represents a solution for determining if a number is a happy number.
+/// </summary>
 public class HappyNumberSolution
 {
-    public bool IsHappy(int n) {
-        char[] arr = n.ToString().ToCharArray();
-        double num = 0;
+    /// <summary>
+    /// Determines whether the given integer <paramref name="n"/> is a happy number.
+    /// </summary>
+    /// <param name="n">The integer to check.</param>
+    /// <returns>
+    /// True if <paramref name="n"/> is a happy number; otherwise, false.
+    /// </returns>
+    /// <remarks>
+    /// A happy number is defined by repeatedly replacing the number with the sum of the squares of its digits,
+    /// and returning true if this process eventually reaches 1. If a cycle is detected (the same number is seen again), returns false.
+    /// </remarks>
+    public bool IsHappy(int n)
+    {
+        HashSet<int> seen = new HashSet<int>();
 
-        for (int i = 0; i < arr.Length; i++)
+        while (n != 1 && !seen.Contains(n))
         {
-            num += Math.Pow(char.GetNumericValue(arr[i]), 2);
+            seen.Add(n);
+            n = GetSumOfSquares(n);
         }
 
-        while (num > 0)
+        return n == 1;
+    }
+
+    /// <summary>
+    /// Calculates the sum of the squares of the digits of the given number.
+    /// </summary>
+    /// <param name="number">The number to process.</param>
+    /// <returns>The sum of the squares of the digits.</returns>
+    private int GetSumOfSquares(int number)
+    {
+        int sum = 0;
+        while (number > 0)
         {
-            char[] tempArr = num.ToString().ToCharArray();
-            num = 0;
-
-            for (int i = 0; i < tempArr.Length; i++)
-            {
-                num += Math.Pow(char.GetNumericValue(tempArr[i]), 2);
-            }
-
-            if (num == 1)
-                return true;
+            int digit = number % 10;
+            sum += digit * digit;
+            number /= 10;
         }
-
-        return false;
+        return sum;
     }
 }
 
