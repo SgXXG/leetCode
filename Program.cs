@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Text;
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// Represents a node in a linked list.
@@ -2067,6 +2068,191 @@ public class HappyNumberSolution
             number /= 10;
         }
         return sum;
+    }
+}
+
+public class Kata
+{
+    /// Determines whether the specified string <paramref name="str"/> ends with the specified <paramref name="ending"/>.
+    /// </summary>
+    /// <param name="str">The string to check.</param>
+    /// <param name="ending">The ending to compare against the end of <paramref name="str"/>.</param>
+    /// <returns>
+    /// <c>true</c> if <paramref name="str"/> ends with <paramref name="ending"/>; otherwise, <c>false</c>.
+    /// </returns>
+    public static bool KataSolution(string str, string ending)
+    {
+        // if (ending.Length > str.Length)
+        //     return false;
+
+        // if (str.Substring(str.Length - ending.Length, ending.Length) == ending)
+        //     return true;
+
+        // return false;
+        return str.EndsWith(ending);
+    }
+
+    /// Creates a formatted phone number string from an array of integers.
+    /// </summary>
+    /// <param name="numbers">
+    /// An array of 10 integers, each representing a single digit of the phone number.
+    /// </param>
+    /// <returns>
+    /// A string representing the phone number in the format "(XXX) XXX-XXXX".
+    /// </returns>
+    /// <exception cref="System.FormatException">
+    /// Thrown if the input array does not contain exactly 10 digits or contains invalid digits.
+    /// </exception>
+    public static string CreatePhoneNumber(int[] numbers)
+    {
+        // StringBuilder sb = new StringBuilder();
+        // sb.Append("(");
+        // sb.Append(numbers[0].ToString());
+        // sb.Append(numbers[1].ToString());
+        // sb.Append(numbers[2].ToString());
+        // sb.Append(") ");
+
+        // sb.Append(numbers[3].ToString());
+        // sb.Append(numbers[4].ToString());
+        // sb.Append(numbers[5].ToString());
+
+        // sb.Append("-");    
+
+        // sb.Append(numbers[6].ToString());
+        // sb.Append(numbers[7].ToString());
+        // sb.Append(numbers[8].ToString());   
+        // sb.Append(numbers[9].ToString());
+
+        // return sb.ToString();
+
+        return long.Parse(string.Concat(numbers)).ToString("(000) 000-0000");
+    }
+
+    /// Rearranges the digits of the given number in descending order and returns the resulting number.
+    /// </summary>
+    /// <param name="num">The number whose digits are to be rearranged.</param>
+    /// <returns>A long representing the number formed by arranging the digits of <paramref name="num"/> in descending order.</returns>
+    public static long DescendingOrder(long num)
+    {
+        string numStr = num.ToString();
+        char[] digits = numStr.ToCharArray();
+
+        Array.Sort(digits);
+        Array.Reverse(digits);
+
+        string sortedNumStr = new string(digits);
+        return int.Parse(sortedNumStr);
+    }
+
+    /// Determines whether the specified string is an isogram.
+    /// An isogram is a word or phrase without a repeating letter, consecutive or non-consecutive.
+    /// </summary>
+    /// <param name="str">The string to check.</param>
+    /// <returns>
+    /// <c>true</c> if the string is an isogram; otherwise, <c>false</c>.
+    /// </returns>
+    public static bool IsIsogram(string str)
+    {
+        str = str.ToLower();
+        HashSet<char> seen = new HashSet<char>();
+
+        foreach (char c in str)
+        {
+            if (seen.Contains(c))
+            {
+                return false;
+            }
+            seen.Add(c);
+        }
+
+        return true;
+    }
+    
+    /// <summary>
+    /// Adds two integers and returns their sum as a binary string.
+    /// </summary>
+    /// <param name="a">The first integer to add.</param>
+    /// <param name="b">The second integer to add.</param>
+    /// <returns>A string representing the binary form of the sum of <paramref name="a"/> and <paramref name="b"/>.</returns>
+    public static string AddBinary(int a, int b)
+    {
+        return Convert.ToString(a + b, 2);
+    }
+
+    /// <summary>
+    /// Calculates the multiplicative persistence of a given number.
+    /// The multiplicative persistence is the number of times you must multiply the digits of the number
+    /// until you reach a single digit.
+    /// </summary>
+    /// <param name="n">The number to calculate the persistence for.</param>
+    /// <returns>The number of steps required to reduce the number to a single digit by multiplying its digits.</returns>
+    public static int Persistence(long n)
+    {
+        int count = 0;
+
+        while (n >= 10)
+        {
+            long product = 1;
+            while (n > 0)
+            {
+                product *= n % 10;
+                n /= 10;
+            }
+            n = product;
+            count++;
+        }
+
+        return count;
+    }
+
+    /// <summary>
+    /// Generates a string describing who likes an item based on the provided array of names.
+    /// </summary>
+    /// <param name="name">An array of names representing people who like the item.</param>
+    /// <returns>
+    /// A string describing the like status:
+    /// - "no one likes this" if the array is empty,
+    /// - "{name[0]} likes this" if one person likes it,
+    /// - "{name[0]} and {name[1]} like this" if two people like it,
+    /// - "{name[0]}, {name[1]} and {name[2]} like this" if three people like it,
+    /// - "{name[0]}, {name[1]} and {n} others like this" if more than three people like it, where n is the number of additional people.
+    /// </returns>
+    public static string Likes(string[] name)
+    {
+        switch (name.Length)
+        {
+            case 0:
+                return "no one likes this";
+            case 1:
+                return $"{name[0]} likes this";
+            case 2:
+                return $"{name[0]} and {name[1]} like this";
+            case 3:
+                return $"{name[0]}, {name[1]} and {name[2]} like this";
+            default:
+                return $"{name[0]}, {name[1]} and {name.Length - 2} others like this";
+        }
+        throw new NotImplementedException();
+    }
+    
+    /// <summary>
+    /// Converts a given number of seconds into a human-readable time format (HH:mm:ss).
+    /// </summary>
+    /// <param name="seconds">The total number of seconds to convert. Must be non-negative.</param>
+    /// <returns>A string representing the time in "HH:mm:ss" format.</returns>
+    /// <exception cref="ArgumentException">Thrown when <paramref name="seconds"/> is negative.</exception>
+    public static string GetReadableTime(int seconds)
+    {
+        if (seconds < 0)
+        {
+            throw new ArgumentException("Input cannot be negative.", nameof(seconds));
+        }
+
+        int hours = seconds / 3600;
+        int minutes = (seconds % 3600) / 60;
+        int remainingSeconds = seconds % 60;
+
+        return string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, remainingSeconds);
     }
 }
 

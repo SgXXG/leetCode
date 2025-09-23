@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\sgxxg.LOCAL\\.nuget\\packages\\": {}
+    "/Users/sgxxg/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\git\\leetCode\\leetCode.csproj",
+      "projectUniqueName": "/Users/sgxxg/Documents/code/leetCode/leetCode.csproj",
       "projectName": "leetCode",
-      "projectPath": "d:\\git\\leetCode\\leetCode.csproj",
-      "packagesPath": "C:\\Users\\sgxxg.LOCAL\\.nuget\\packages\\",
-      "outputPath": "d:\\git\\leetCode\\obj\\",
+      "projectPath": "/Users/sgxxg/Documents/code/leetCode/leetCode.csproj",
+      "packagesPath": "/Users/sgxxg/.nuget/packages/",
+      "outputPath": "/Users/sgxxg/Documents/code/leetCode/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\sgxxg.LOCAL\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/sgxxg/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -63,19 +63,15 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.19, 8.0.19]"
+            "version": "[8.0.18, 8.0.18]"
           },
           {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[8.0.19, 8.0.19]"
+            "name": "Microsoft.NETCore.App.Host.osx-x64",
+            "version": "[8.0.18, 8.0.18]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.19, 8.0.19]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.19, 8.0.19]"
+            "version": "[8.0.18, 8.0.18]"
           }
         ],
         "frameworkReferences": {
@@ -83,7 +79,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
