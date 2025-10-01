@@ -2071,6 +2071,78 @@ public class HappyNumberSolution
     }
 }
 
+public class ContainDuplicatesSolution
+{
+    public bool ContainsDuplicate(int[] nums)
+    {
+        HashSet<int> seen = new HashSet<int>();
+        foreach (int num in nums)
+        {
+            if (seen.Contains(num))
+            {
+                return true;
+            }
+            seen.Add(num);
+        }
+        return false;
+    }
+}
+
+public class ReverseSolution
+{
+    public int Reverse(int x)
+    {
+        long reversed = 0;
+        while (x != 0)
+        {
+            int digit = x % 10;
+            reversed = reversed * 10 + digit;
+            x /= 10;
+        }
+        if (reversed < int.MinValue || reversed > int.MaxValue)
+        {
+            return 0;
+        }
+        return (int)reversed;
+    }
+}
+
+public class RomanToIntSoution
+{
+    public int RomanToInt(string s)
+    {
+        Dictionary<char, int> romanMap = new Dictionary<char, int>
+        {
+            {'I', 1},
+            {'V', 5},
+            {'X', 10},
+            {'L', 50},
+            {'C', 100},
+            {'D', 500},
+            {'M', 1000}
+        };
+
+        int total = 0;
+        int prevValue = 0;
+
+        foreach (char c in s)
+        {
+            int currentValue = romanMap[c];
+            if (currentValue > prevValue)
+            {
+                total += currentValue - 2 * prevValue;
+            }
+            else
+            {
+                total += currentValue;
+            }
+            prevValue = currentValue;
+        }
+
+        return total;
+    }
+}
+
 public class Kata
 {
     /// Determines whether the specified string <paramref name="str"/> ends with the specified <paramref name="ending"/>.
@@ -2167,7 +2239,7 @@ public class Kata
 
         return true;
     }
-    
+
     /// <summary>
     /// Adds two integers and returns their sum as a binary string.
     /// </summary>
@@ -2234,7 +2306,7 @@ public class Kata
         }
         throw new NotImplementedException();
     }
-    
+
     /// <summary>
     /// Converts a given number of seconds into a human-readable time format (HH:mm:ss).
     /// </summary>
