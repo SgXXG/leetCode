@@ -2357,6 +2357,118 @@ public class Kata
         }
     }
 
+public class RemoveDuplicatesSolution
+{
+    /// <summary>
+    /// Removes duplicates from a sorted array in-place and returns the number of unique elements.
+    /// The first returned count elements of <paramref name="nums"/> will hold the unique values.
+    /// </summary>
+    /// <param name="nums">A sorted (non-decreasing) integer array.</param>
+    /// <returns>The number of unique elements after removal.</returns>
+    public int RemoveDuplicates(int[] nums)
+    {
+        if (nums == null || nums.Length == 0)
+        {
+            return 0;
+        }
+
+        int uniqueCount = 1;
+
+        for (int i = 1; i < nums.Length; i++)
+        {
+            if (nums[i] != nums[uniqueCount - 1])
+            {
+                nums[uniqueCount] = nums[i];
+                uniqueCount++;
+            }
+        }
+
+        int[] result = new int[uniqueCount];
+        Array.Copy(nums, result, uniqueCount);
+        return uniqueCount;
+    }
+}
+
+public class RemoveElementSolution
+{
+    public int RemoveElement(int[] nums, int val)
+    {
+        if (nums == null || nums.Length == 0)
+        {
+            return 0;
+        }
+
+        int writeIndex = 0;
+
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (nums[i] != val)
+            {
+                nums[writeIndex] = nums[i];
+                writeIndex++;
+            }
+        }
+
+        return writeIndex;
+    }
+}
+
+public class StrStrSolution
+{
+    public int StrStr(string haystack, string needle)
+    {
+        if (needle == "")
+            return 0;
+
+        for (int i = 0; i <= haystack.Length - needle.Length; i++)
+        {
+            int j;
+            for (j = 0; j < needle.Length; j++)
+            {
+                if (haystack[i + j] != needle[j])
+                {
+                    break;
+                }
+            }
+            if (j == needle.Length)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+public class CountAndSaySolution
+{
+    public string CountAndSay(int n)
+    {
+        if (n == 1) return "1";
+
+        string previous = CountAndSay(n - 1);
+        StringBuilder current = new StringBuilder();
+
+        int count = 1;
+        for (int i = 1; i < previous.Length; i++)
+        {
+            if (previous[i] == previous[i - 1])
+            {
+                count++;
+            }
+            else
+            {
+                current.Append(count);
+                current.Append(previous[i - 1]);
+                count = 1;
+            }
+        }
+        current.Append(count);
+        current.Append(previous[previous.Length - 1]);
+
+        return current.ToString();
+    }
+}
+
 public class Program
 {
     public static void Main()
@@ -2641,5 +2753,21 @@ public class Program
         HappyNumberSolution sol43 = new HappyNumberSolution();
         System.Console.WriteLine();
         System.Console.WriteLine(sol43.IsHappy(2));
+
+        RemoveDuplicatesSolution sol44 = new RemoveDuplicatesSolution();
+        System.Console.WriteLine();
+        int[] arr4 = { 1, 1, 2 };
+        int newLength = sol44.RemoveDuplicates(arr4);
+        System.Console.WriteLine(newLength);
+
+        RemoveElementSolution sol45 = new RemoveElementSolution();
+        System.Console.WriteLine();
+        int[] arr5 = { 3, 2, 2, 3 };
+        int uniqueC = sol45.RemoveElement(arr5, 3);
+        System.Console.WriteLine(uniqueC);
+
+        CountAndSaySolution sol46 = new CountAndSaySolution();
+        System.Console.WriteLine();
+        System.Console.WriteLine(sol46.CountAndSay(5));
     }
 }
