@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Security.AccessControl;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -425,25 +426,25 @@ public class ConstructStringFromBinaryTreeSolution {
     /// <param name="sb">The StringBuilder used to build the string representation.</param>
     private void Tree2strHelper(TreeNode node, System.Text.StringBuilder sb) {
         if (node == null)
-            {
-                return;
-            }
-        
-            sb.Append(node.val);
-        
-            if (node.left != null || node.right != null)
-            {
-                sb.Append("(");
-                Tree2strHelper(node.left, sb);
-                sb.Append(")");
-            }
-        
-            if (node.right != null)
-            {
-                sb.Append("(");
-                Tree2strHelper(node.right, sb);
-                sb.Append(")");
-            }
+        {
+            return;
+        }
+    
+        sb.Append(node.val);
+    
+        if (node.left != null || node.right != null)
+        {
+            sb.Append("(");
+            Tree2strHelper(node.left, sb);
+            sb.Append(")");
+        }
+    
+        if (node.right != null)
+        {
+            sb.Append("(");
+            Tree2strHelper(node.right, sb);
+            sb.Append(")");
+        }
     }
 }
 
@@ -2466,6 +2467,26 @@ public class CountAndSaySolution
         current.Append(previous[previous.Length - 1]);
 
         return current.ToString();
+    }
+}
+
+public class IsSymmetricSolution
+{
+    public bool IsSymmetric(TreeNode root) {
+        if (root == null)
+            return true;
+
+        return IsSymmetricTree(root.left, root.right);
+    }
+
+    public bool IsSymmetricTree(TreeNode node1, TreeNode node2) {
+        if (node1 == null && node2 == null)
+            return true;
+        
+        if (node1 == null || node2 == null)
+            return false;
+
+        return (node1.val == node2.val) && IsSymmetricTree(node1.left, node2.right) && IsSymmetricTree(node1.right, node2.left);
     }
 }
 
